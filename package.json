@@ -1,0 +1,12 @@
+{
+  "name": "ak47",
+  "version": "1.0.0",
+  "description": "web client for glock",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:nchudleigh/ak47",
+    "type": "git"
+  },
+  "author": "Neil Chudleigh <nchudleigh@gmail.com>",
+  "license": "MIT"
+}
