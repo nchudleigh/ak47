@@ -1,3 +1,5 @@
+/* Typography */
+
 .text{
     line-height: 1.4rem
 }
@@ -12,7 +14,6 @@
 
 .text.sans {
     font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
 }
 
 .text.bold {
@@ -36,3 +37,35 @@
 .text.large {
     font-size: 2rem;
 }
+
+/* Colors */
+
+a {
+    color: #4990E2;
+}
+
+.text.grey {
+    color: #707070;
+}
+
+
+/* Spacing */
+.m1{
+    margin: 1rem;
+}
+
+.m1b{
+    margin-bottom: 1rem;
+}
+
+.m1t{
+    margin-top: 1rem;
+}
+
+.m1h {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+
+/* Input */
