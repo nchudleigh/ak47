@@ -1,0 +1,38 @@
+.text{
+    line-height: 1.4rem
+}
+
+.text.serif {
+    font-family: serif;
+}
+
+.text.mono {
+    font-family: Inconsolata, monospace;
+}
+
+.text.sans {
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+.text.bold {
+    font-weight: bold;
+}
+.text.bolder {
+    font-weight: bolder;
+}
+.text.boldest {
+    font-weight: boldest;
+}
+
+.text.small {
+    font-size: 1rem;
+}
+
+.text.medium {
+    font-size: 1.5rem;
+}
+
+.text.large {
+    font-size: 2rem;
+}
