@@ -19,20 +19,27 @@ var email_input = new Vue({
 
 var copybox = Vue.component(
     'copybox', {
-        template: "<input id='box' value='{{content}}'><button data-clipboard-target='#box'>Copy</button>",
-        props: ["content"],
-        methods: {
-
-        }
+        template: "<input id='box' type='text' onclick='this.select()' v-model='content'><button data-clipboard-target='#box'>Copy</button>",
+        props: ['content']
     }
 )
+
+[{
+    name: 'vladimir',
+    age: 10
+}, {
+    name: 'austen',
+    age: 23
+}]
 
 
 var ak47 = new Vue({
     el: "#ak47",
     data: {
         currentRoute: window.location.pathname,
-        user: {},
+        user: {
+            live_key: ""
+        },
         links: {}
     },
     methods: {}

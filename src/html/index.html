@@ -79,20 +79,25 @@
             </div>
         </div>
 
-        <div id="view_api_key" class="container">
-            <div class="text mono">
-                Your API key
-            </div>
-            <div class="text bold">
-                Put this
-                <a href="#">Somewhere Safe</a>
-                <copy-box content=""></copy-box>
+        <div id="ak47" class="container">
+            <div v-if="user.live_key">
+                <div class="text mono">
+                    Your API key
+                </div>
+                <div class="text bold">
+                    Put this
+                    <a href="#">somewhere safe</a>
+                    <div class="">
+                        <copybox :content="user.live_key"></copybox>
+                    </div>
+                </div>
             </div>
         </div>
 
 
         <script type="text/javascript" src="../../node_modules/vue/dist/vue.min.js"></script>
         <script type="text/javascript" src="../../node_modules/net.js/build/net.min.js"></script>
+        <script type="text/javascript" src="../../node_modules/clipboard/dist/clipboard.min.js"></script>
         <script type="text/javascript" src="../js/index.js"></script>
     </body>
 </html>
