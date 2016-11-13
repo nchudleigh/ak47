@@ -8,7 +8,7 @@ var email_input = new Vue({
     validate: function() {
       if (this.email_address.includes("@")&&
       this.email_address.includes(".")){
-        console.log("Okay!")
+        createUser(this.email_address)
         this.error_message=""
       }
       else {
@@ -17,3 +17,19 @@ var email_input = new Vue({
     }
   }
 })
+
+
+var glock = new Net(
+  'http://192.168.0.103:8082/',
+  {
+    'Content-Type' : 'application/json'
+  }
+);
+
+function createUser(email_address) {
+  glock
+    .post('users/', {email: email_address})
+    .then( function(response) {
+        console.log(response)
+    })
+}

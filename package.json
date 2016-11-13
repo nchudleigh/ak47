@@ -10,6 +10,7 @@
   "author": "Neil Chudleigh <nchudleigh@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "net.js": "^4.0.0",
     "vue": "^2.0.5"
   }
 }
