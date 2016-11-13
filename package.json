@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "clipboard": "^1.5.15",
+    "net.js": "^4.0.0",
     "vue": "^2.0.5"
   }
 }
