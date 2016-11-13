@@ -69,3 +69,6 @@ a {
 
 
 /* Input */
+input.red {
+  border-color: red !important;
+}

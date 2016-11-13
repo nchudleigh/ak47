@@ -6,7 +6,6 @@
         <link rel="stylesheet" href="../css/index.css"></link>
         <link rel="stylesheet" href="../css/skeleton.css"></link>
         <link rel="stylesheet" href="../css/normalize.css"></link>
-        <script type="text/javascript" src="../../node_modules/vue/dist/vue.min.js"></script>
     </head>
     <body>
         <div class="container">
@@ -72,11 +71,17 @@
                 </div>
             </div>
 
-            <div class="m1h">
-                <input type="text" placeholder="your@email.com"><input type="button" value="Ok">
+            <div id="email_input" class="m1h">
+                <input type="text" placeholder="your@email.com" v-model="email_address" v-bind:class="{red:error_message}">
+                <button v-on:click="validate">Ok</button>
+                <div>{{error_message}} </div>
             </div>
         </div>
         <div id="ak47">
         </div>
+
+
+        <script type="text/javascript" src="../../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript" src="../js/index.js"></script>
     </body>
 </html>
