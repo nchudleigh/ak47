@@ -1,9 +1,3 @@
-<style scoped>
-
-
-
-</style>
-
 <template>
 
 <!-- Landing Page -->
@@ -63,7 +57,7 @@
             How do I get started?
         </div>
         <div class="text sans bold">
-            Put your email in down here
+            Put in your email and slap that Ok button
         </div>
     </div>
 
@@ -93,6 +87,9 @@
 </template>
 
 <script>
+import User from '../js/user'
+
+console.log(User)
 
 export default {
     name: 'landing',
@@ -111,7 +108,6 @@ export default {
                 this.error_message = "Invalid email address";
             }
         },
-
     }
 }
 

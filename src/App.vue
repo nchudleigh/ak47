@@ -6,6 +6,7 @@
 
 import Landing from './components/Landing'
 import utils from './components/utils/utils'
+import User from './js/user'
 
 export default {
   name: 'app',
