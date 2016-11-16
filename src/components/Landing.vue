@@ -87,9 +87,8 @@
 </template>
 
 <script>
-import User from '../js/user'
 
-console.log(User)
+import User from '../js/user'
 
 export default {
     name: 'landing',
