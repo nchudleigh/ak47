@@ -11,7 +11,8 @@ var api = {
       error.response = response
       throw error
     }
-  }
+  },
+  parseJson: response => response.json()
 }
 
 export default api

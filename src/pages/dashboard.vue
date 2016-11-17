@@ -6,7 +6,9 @@
                 <router-link class="tab m1r" to="/user">USER</router-link>
             </span>
         </div>
-        <router-view></router-view>
+        <transition class="fade">
+            <router-view></router-view>
+        </transition>
     </div>
 </template>
 

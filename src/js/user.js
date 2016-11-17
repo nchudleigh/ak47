@@ -10,7 +10,7 @@ const user = {
         })
       })
       .then(api.checkStatus)
-      .then(r => r.json())
+      .then(api.parseJson)
   }
 }
 
