@@ -1,12 +1,19 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import App from './App'
+import routes from './routes'
 
+Vue.use(VueRouter)
 
-/* eslint-disable no-new */
+const router = new VueRouter({
+  routes,
+  mode: 'history'
+})
+
 new Vue({
-  el: '#app',
   template: '<App/>',
+  router,
   components: {
     App
   }
-})
+}).$mount('#app')

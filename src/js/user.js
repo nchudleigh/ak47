@@ -1,17 +1,17 @@
-var users = new Net(
-  'http://192.168.0.103:8082/users', {
-    'Content-Type': 'application/json'
+import api from './api'
+
+const user = {
+  create(email) {
+    return fetch(`${api.domain}/users/`, {
+        method: 'POST',
+        headers: api.headers,
+        body: JSON.stringify({
+          email
+        })
+      })
+      .then(api.checkStatus)
+      .then(r => r.json())
   }
-);
+}
 
-const User = {}
-
-User.create = function() {
-  users
-    .post('/', {
-      email: email_address
-    })
-    .then(function(response) {
-      console.log(response)
-    })
-};
+export default user

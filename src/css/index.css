@@ -3,7 +3,8 @@
 /* Table of contents
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 - Typography (text)
-- Colors ()
+- Borders
+- Colors
 - Spacing (margin, padding)
 - Grid
 - Base Styles
@@ -82,30 +83,47 @@
     font-size: 2rem;
 }
 
+
+/* Links
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 a {
     color: #4990E2;
     text-decoration: none;
 }
 
 a:hover{
-    color: #236ec4;
+    color: #2676d1;
     text-decoration: underline;
 }
 
 a:visited{
-    color: #236ec4;
+    color: #2676d1;
+}
+
+/* Border
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.border{
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 /* Colors
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-.text.grey {
+.grey {
     color: #707070;
+}
+
+.lightgrey {
+    color: #B4B4B4;
 }
 
 
 /* Spacing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* Margin */
 .m1{
     margin: 1rem;
 }
@@ -122,9 +140,19 @@ a:visited{
     margin-left: 1rem;
 }
 
+.m1r{
+    margin-right: 1rem;
+}
+
 .m1h {
     margin-bottom: 1rem;
     margin-top: 1rem;
+}
+
+/* Padding */
+
+.p1 {
+    padding: 1rem;
 }
 
 
@@ -343,10 +371,9 @@ td:last-child {
 /* Misc
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 hr {
-  margin-top: 3rem;
-  margin-bottom: 3.5rem;
   border-width: 0;
-  border-top: 1px solid #E1E1E1; }
+  border-top: 1px solid #ddd; 
+}
 
 
 /* Clearing

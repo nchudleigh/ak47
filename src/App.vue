@@ -1,21 +1,23 @@
 <template>
-    <landing></landing>
+    <router-view>
+    </router-view>
 </template>
 
 <script>
 
-import Landing from './components/Landing'
-import utils from './components/utils/utils'
+import landing from './pages/landing'
+import dashboard from './pages/dashboard'
 import User from './js/user'
 
 export default {
   name: 'app',
   components: {
-      Landing,
-      utils
+      landing,
+      dashboard
   },
 }
 </script>
 
 <style src="./css/normalize.css"></style>
+<!-- <style src="./css/animate.css"></style> -->
 <style src="./css/index.css"></style>

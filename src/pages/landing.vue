@@ -17,18 +17,18 @@
         <div class="text sans bold">
             A lot! Here are some common uses:
         </div>
-        <div class="text sans s m1l">
-            <a href="#">
+        <div class="text sans bold m1l">
+            <a href="#link-shortening">
                 Link Shortening
             </a>
         </div>
-        <div class="text sans s m1l">
-            <a href="#">
+        <div class="text sans bold m1l">
+            <a href="#custom-domain">
                 Use a custom domain and track your Affiliate Links
             </a>
         </div>
-        <div class="text sans s m1l">
-            <a href="#" class="text sans">
+        <div class="text sans bold m1l">
+            <a href="#static-files" class="text sans">
                 Easily version Static Files on a CDN
             </a>
         </div>
@@ -57,7 +57,7 @@
             How do I get started?
         </div>
         <div class="text sans bold">
-            Put in your email and slap that Ok button
+            Put in your email and hit Ok
         </div>
     </div>
 
@@ -68,27 +68,14 @@
             {{error_message}}
         </div>
     </div>
-    <!--
-    <div>
-        <div class="text mono">
-            Your API key
-        </div>
-        <div class="text bold">
-            Put this
-            <a href="#">somewhere safe</a>
-            <div class="">
-                <copybox :content="user.live_key"></copybox>
-            </div>
-        </div>
-    </div> -->
-
 </div>
 
 </template>
 
 <script>
 
-import User from '../js/user'
+import user from '../js/user'
+import state from '../js/state'
 
 export default {
     name: 'landing',
@@ -101,8 +88,15 @@ export default {
     methods: {
         validate: function() {
             if (this.email_addr.includes("@") && this.email_addr.includes(".")) {
-                User.create(this.email_addr);
                 this.error_message = "";
+                user.create(this.email_addr)
+                .then(response => {
+                    state.user = response;
+                    this.$router.push('dash');
+                })
+                .catch(err => {
+                    this.error_message = `Request failed ${err.message}`;
+                });
             } else {
                 this.error_message = "Invalid email address";
             }

@@ -15,7 +15,9 @@
     "clipboard": "^1.5.15",
     "lodash": "^4.17.1",
     "net.js": "^4.0.0",
-    "vue": "^2.0.1"
+    "vue": "^2.0.1",
+    "vue-router": "^2.0.2",
+    "whatwg-fetch": "^2.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
