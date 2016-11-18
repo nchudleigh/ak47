@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="m1t">
+    <div class="m1h">
         <div class="p1 border grey">
             <div class="text mono grey">
                 What are links?

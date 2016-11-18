@@ -7,13 +7,16 @@ export default [{
   path: '/',
   component: landing
 }, {
-  path: '/',
+  path: '/links',
+  name: 'dashboard',
   component: dashboard,
   children: [{
-    path: '/links',
+    path: '/',
+    name: 'links',
     component: links
   }, {
     path: '/user',
+    name: 'users',
     component: users
   }]
 }]
