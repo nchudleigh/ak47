@@ -57,7 +57,7 @@
             How do I get started?
         </div>
         <div class="text sans bold">
-            Put in your email and hit Ok
+            Just put in your email!
         </div>
     </div>
 

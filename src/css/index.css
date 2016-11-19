@@ -108,6 +108,13 @@ a:visited{
     color: #2676d1;
 }
 
+/* Cursor
+-------------------------------------------------- */
+
+.cp {
+    cursor: pointer;
+}
+
 /* Labels
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 label {
@@ -115,9 +122,13 @@ label {
 }
 /* Border
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.border{
+.bo{
     border: 1px solid #ddd;
     border-radius: 4px;
+}
+
+.bor{
+    border-right: 1px solid #ddd;
 }
 
 /* Colors
@@ -129,6 +140,10 @@ label {
 
 .lightgrey {
     color: #B4B4B4;
+}
+
+.hgrey:hover {
+    color: #2c2c2c;
 }
 
 
@@ -189,6 +204,11 @@ label {
 .p1 {
     padding: 1rem;
 }
+
+.p1b{
+    padding-bottom: 1rem;
+}
+
 .p5 {
     padding: 0.5rem;
 }
@@ -200,6 +220,10 @@ label {
 
 .ib {
     display: inline-block;
+}
+
+.oh {
+    overflow: hidden;
 }
 
 
@@ -368,6 +392,7 @@ input[type="text"]:focus,
 input[type="tel"]:focus,
 input[type="url"]:focus,
 input[type="password"]:focus,
+input[type="textarea"]:focus,
 textarea:focus,
 select:focus {
     background-color: #ddd;

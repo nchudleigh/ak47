@@ -33,11 +33,5 @@ export default {
 </script>
 
 
-
 <style src="./css/normalize.css"></style>
-<!--
-
-<style src="./css/animate.css"></style> -->
-
-
 <style src="./css/index.css"></style>

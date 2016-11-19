@@ -6,15 +6,17 @@ import fetch from 'whatwg-fetch'
 
 Vue.use(VueRouter)
 
+// TODO: init stripe
+
 const router = new VueRouter({
-  routes,
-  mode: 'history'
+    routes,
+    mode: 'history'
 })
 
 new Vue({
-  template: '<App/>',
-  router,
-  components: {
-    App
-  }
+    template: '<App/>',
+    router,
+    components: {
+        App
+    }
 }).$mount('#app')
