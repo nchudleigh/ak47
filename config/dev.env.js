@@ -3,5 +3,5 @@ var prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  API_DOMAIN: '"http://glock.local:8082"'
+  API_DOMAIN: '"http://localhost:8082"'
 })

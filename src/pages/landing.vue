@@ -62,11 +62,13 @@
     </div>
 
     <div id="email_input" class="m1h">
-        <input type="text" placeholder="your@email.com" v-model="email_addr" v-bind:class="{red:error_message}">
-        <button v-on:click="validate">Ok</button>
-        <div class="text mono">
-            {{error_message}}
-        </div>
+        <form v-on:submit.prevent="validate">
+            <input type="text" placeholder="your@email.com" v-model="email_addr" v-bind:class="{red:error_message}">
+            <button v-on:click="validate">Ok</button>
+            <div class="text mono">
+                {{error_message}}
+            </div>
+        </form>
     </div>
 </div>
 
@@ -91,8 +93,9 @@ export default {
                 this.error_message = "";
                 user.create(this.email_addr)
                 .then(response => {
+                    state.user.id = response.id;
                     state.user = response;
-                    this.$router.push('dash');
+                    this.$router.push({name:'links'});
                 })
                 .catch(err => {
                     this.error_message = `Request failed ${err.message}`;

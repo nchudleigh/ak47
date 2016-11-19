@@ -13,7 +13,7 @@
         </div>
         <!-- Headers -->
         <div class="row m1t">
-            <div class="three columns">
+            <div class="six columns">
                 <span class="text mono s bold">
                     Path
                 </span>
@@ -27,9 +27,11 @@
         <hr>
         <div v-for="(link, index) in links">
             <div  class="row m1h">
-                <div class="three columns">
+                <div class="six columns">
                     <span class="text mono s">
-                        http://<span class="lightgrey">{{user.id}}.glock.link</span>{{link.path}}
+                        <span class="lightgrey">
+                            http://{{user.key}}.glock.link
+                        </span>{{link.path}}
                     </span>
                 </div>
                 <div class="three columns">

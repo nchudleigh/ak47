@@ -83,6 +83,13 @@
     font-size: 2rem;
 }
 
+.text.left{
+    text-align:left;
+}
+.text.right{
+    text-align:right;
+}
+
 
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -101,6 +108,11 @@ a:visited{
     color: #2676d1;
 }
 
+/* Labels
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+label {
+    margin: 0 !important;
+}
 /* Border
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .border{
@@ -145,14 +157,49 @@ a:visited{
 }
 
 .m1h {
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin: 1rem 0;
+}
+
+.m2{
+    margin: 2rem;
+}
+
+.m2b{
+    margin-bottom: 2rem;
+}
+
+.m2t{
+    margin-top: 2rem;
+}
+
+.m2l{
+    margin-left: 2rem;
+}
+
+.m2r{
+    margin-right: 2rem;
+}
+
+.m2h {
+    margin: 2rem 0;
 }
 
 /* Padding */
 
 .p1 {
     padding: 1rem;
+}
+.p5 {
+    padding: 0.5rem;
+}
+.p25 {
+    padding: 0.25rem;
+}
+
+/* Display */
+
+.ib {
+    display: inline-block;
 }
 
 
@@ -372,7 +419,7 @@ td:last-child {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 hr {
   border-width: 0;
-  border-top: 1px solid #ddd; 
+  border-top: 1px solid #ddd;
 }
 
 

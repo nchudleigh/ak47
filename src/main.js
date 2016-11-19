@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App'
 import routes from './routes'
+import fetch from 'whatwg-fetch'
 
 Vue.use(VueRouter)
 

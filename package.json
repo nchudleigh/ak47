@@ -12,7 +12,9 @@
     "test": "npm run unit && npm run e2e"
   },
   "dependencies": {
-    "clipboard": "^1.5.15",
+    "exports-loader": "^0.6.3",
+    "fetch": "^1.1.0",
+    "imports-loader": "^0.6.5",
     "vue": "^2.0.1",
     "vue-router": "^2.0.2",
     "whatwg-fetch": "^2.0.0"

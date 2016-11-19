@@ -2,31 +2,78 @@
   <div class="m1h">
       <div class="p1 border grey m1h">
           <div class="text mono grey">
-              You must purchase to create links- I mean its not like servers are free.
+              You have to pay to create links- its not like servers are free.
           </div>
           <div class="text sans s bold">
             Payments are processed by Stripe, you can cancel anytime.
           </div>
+
           <!-- Credit Card Input -->
           <div class="m1t">
-              <input type="text" placeholder="XXXX XXXX XXXX XXXX">
-              <input type="text" placeholder="XX/XX">
-              <input type="text" placeholder="XXX">
-              <input type="button" value="Ok" placeholder="666">
+              <form>
+              <!-- Name -->
+              <div class="m1r ib">
+                  <label class="text s2 mono" for="cc_name">Name</label>
+                  <input type="text" name="cc_name" autocomplete="cc-name" placeholder="XXXXX XXXXXXXX" size="20">
+              </div>
+              <!-- Number -->
+              <div class="m1r ib">
+                  <label class="text s2 mono" for="cc_num">Num</label>
+                  <input id="cc_num" name="cc_num" type="text" size="20"
+                  placeholder="XXXX XXXX XXXX XXXX" maxlength="16" autocomplete="cc-number">
+              </div>
+              <!-- Expiry -->
+              <div class="m1r ib">
+                  <label class="text s2 mono" for="cc_exp">Exp</label>
+                  <input id="cc_expmonth" name="cc_exp" type="text"
+                    placeholder="XX" size="2" maxlength="2" autocomplete="cc-expmonth">
+                  <input id="cc_expyear" name="cc_exp" type="text"
+                    placeholder="XX" size="2" maxlength="2" autocomplete="cc-expyear">
+              </div>
+              <!-- CVC -->
+              <div class="m1r ib">
+                  <label class="text s2 mono" for="cc_cvc2">CVC</label>
+                  <input id="cc_cvc2" name="cc_cvc2" type="text"
+                  placeholder="XXX" size="4" maxlength="4" autocomplete="cvc2">
+              </div>
+              <div class="ib">
+                  <input type="button" value="Ok">
+              </div>
               {{error_message}}
+              </form>
           </div>
       </div>
-      <!-- API Keys -->
-      <div class="m1h">
-          <div class="row" v-for="(value, key) in user">
-            <div class="six columns">
-                <span class="lightgrey">
-                    {{key}}:
-                </span>
-                <span class="">
-                    {{value}}
-                </span>
-            </div>
+      <!-- Information -->
+      <div class="m2h">
+          <div class="">
+              <div class="text grey s mono m1t">
+                  Email
+              </div>
+              <div class="text mono">
+                  <span class="border p25">
+                      {{user.email}}
+                  </span>
+              </div>
+          </div>
+          <div class="m1h">
+              <div class="text grey s mono">
+                  API key
+              </div>
+              <div class="text mono">
+                  <span class="border p25">
+                      {{user.live_key}}
+                  </span>
+              </div>
+          </div>
+          <div class="">
+              <div class="text grey s mono m1t">
+                  Url
+              </div>
+              <div class="text mono">
+                  <span class="border p25">
+                      https://{{user.key}}.glock.link
+                  </span>
+              </div>
           </div>
       </div>
   </div>
@@ -39,14 +86,7 @@ export default {
     name: 'users',
     data() {
         return {
-            user: {
-                id: "user_d23j89ej32dsa",
-                email: "neil@growsumo.com",
-                key:"yd3782hduo321",
-                live_key: "live_8wejkdasljds89ouad",
-                active: true,
-                tier: 'freeloader'
-            }
+            user: state.user
         }
     }
 }
