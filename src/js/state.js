@@ -1,7 +1,7 @@
 const state = {
-  user: {
-    id: ""
-  }
+    user: {
+        id: "thisisaplaceholderid"
+    }
 }
 
 export default state

@@ -1,6 +1,3 @@
-<style lang="css">
-</style>
-
 <template lang="html">
 
 <div class="">
@@ -8,12 +5,12 @@
     <span class="text mono s m1l">{{endpoint.url}}</span>
     <form v-on:submit.prevent="submit">
         <div class="">
-            <textarea id="textarea" v-model="body" style="resize:none;height:100px" class="oh text s u-full-width" v-on:keydown="tab" v-on:keyup="resize">
-            </div>
-            <button v-on:click="submit">Send</button>
-            <span class="text mono grey cp hgrey" v-on:click="cancel">Cancel</span>
+            <textarea id="textarea" v-model="body" style="resize:none;height:100px" class="oh text s u-full-width" @keydown="tab" @keyup="resize">
         </div>
+        <button @click="submit">Send</button>
+        <span class="text mono grey cp hgrey m1l" @click="cancel">Cancel</span>
     </form>
+</div>
 
 </template>
 
@@ -21,18 +18,20 @@
 
 export default {
     name: 'request',
-    // props :['endpoint', 'body', 'submit'],
+    props : {
+        bus: Object,
+        input: Object
+    },
     data() {
         return {
             endpoint: {
                 url: 'https://glock.run/links/link_8e3n2jdo2djlj',
                 method: 'PATCH'
-            },
+            }
         }
     },
     methods: {
         resize(e) {
-                console.log('resize')
                 var ta = document.getElementById('textarea');
                 ta.style.height = 'auto';
                 ta.style.height = ta.scrollHeight + 'px';
@@ -51,15 +50,19 @@ export default {
             }
         },
         submit() {
-            console.log('submit');
+            this.bus.$emit('submit')
         },
         cancel() {
-            console.log('cancel');
+            this.bus.$emit('cancel')
         }
     },
     computed: {
         body() {
-            return "{\n\t'path': '/:search',\n\t'dest': 'google.com/:search'\n}"
+            var content = "{"
+            for ( var key in input ) {
+                content += `\n\t"${key}": "${input[key]}",`
+            }
+            return content+"\n}"
         }
     }
 }

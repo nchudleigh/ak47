@@ -122,8 +122,12 @@ label {
 }
 /* Border
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.bo{
+.bo {
     border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.br {
     border-radius: 4px;
 }
 
@@ -144,6 +148,10 @@ label {
 
 .hgrey:hover {
     color: #2c2c2c;
+}
+
+.hbggrey:hover {
+    background-color: #eee;
 }
 
 
