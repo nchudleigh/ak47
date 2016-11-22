@@ -47,7 +47,7 @@ code {
         </div>
         <!-- Edit Container -->
         <div v-if="editing" class="columns" :class="edit_class">
-            <request :obj="editing" :bus="bus"></request>
+            <request :obj="editing" :bus="bus" :submit="update"></request>
         </div>
     </div>
 </div>
@@ -57,6 +57,7 @@ code {
 <script>
 
 import state from '../js/state'
+import links from '../js/links'
 import request from './request'
 import vlink from './vlink'
 import Vue from 'vue'
@@ -72,7 +73,6 @@ export default {
             bus: new Vue(),
             editing: null,
             user: state.user,
-            input: {'id':'booger'},
             links: [{
                 id: 'link_1',
                 path: '/:search',
@@ -86,12 +86,14 @@ export default {
     },
     created() {
         this.bus.$on('edit', this.edit)
-        this.bus.$on('submit', this.submit)
         this.bus.$on('cancel', this.cancel)
     },
     methods: {
-        submit() {
-            console.log('submit')
+        update(payload) {
+            links.update(payload)
+            .then((response)=>{
+                console.log(response);
+            })
         },
         edit(link) {
             this.editing = this.links.find((l) => link.id==l.id );

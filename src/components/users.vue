@@ -16,23 +16,23 @@
             <form v-on:submit.prevent="submit">
                 <!-- Name -->
                 <div class="m1r ib">
-                    <label class="text s2 mono" for="cc_name">Name</label>
+                    <label class="text s1 grey mono" for="cc_name">Name</label>
                     <input type="text" name="cc_name" autocomplete="cc-name" placeholder="XXXXX XXXXXXXX" size="20">
                 </div>
                 <!-- Number -->
                 <div class="m1r ib">
-                    <label class="text s2 mono" for="cc_num">Num</label>
+                    <label class="text s1 grey mono" for="cc_num">Num</label>
                     <input id="cc_num" name="cc_num" type="text" size="20" placeholder="XXXX XXXX XXXX XXXX" maxlength="16" autocomplete="cc-number">
                 </div>
                 <!-- Expiry -->
                 <div class="m1r ib">
-                    <label class="text s2 mono" for="cc_exp">Exp</label>
+                    <label class="text s1 grey mono" for="cc_exp">Exp</label>
                     <input id="cc_expmonth" name="cc_exp" type="text" placeholder="XX" size="2" maxlength="2" autocomplete="cc-expmonth">
                     <input id="cc_expyear" name="cc_exp" type="text" placeholder="XX" size="2" maxlength="2" autocomplete="cc-expyear">
                 </div>
                 <!-- CVC -->
                 <div class="m1r ib">
-                    <label class="text s2 mono" for="cc_cvc2">CVC</label>
+                    <label class="text s1 grey mono" for="cc_cvc2">CVC</label>
                     <input id="cc_cvc2" name="cc_cvc2" type="text" placeholder="XXX" size="4" maxlength="4" autocomplete="cvc2">
                 </div>
                 <div class="ib">
@@ -90,16 +90,19 @@ export default {
             user: state.user
         }
     },
-    submit() {
-        Stripe.card.createToken({
-            number: document.querySelector('#cc_num').value,
-            cvc: document.querySelector('#cc_cvc2').value,
-            exp_month: document.querySelector('#cc_expmonth').value,
-            exp_year: document.querySelector('#cc_expyear').value,
-        }, (response) => {
-            console.log('hi i am juan', response);
-        });
+    methods: {
+        submit() {
+            Stripe.card.createToken({
+                number: document.querySelector('#cc_num').value,
+                cvc: document.querySelector('#cc_cvc2').value,
+                exp_month: document.querySelector('#cc_expmonth').value,
+                exp_year: document.querySelector('#cc_expyear').value,
+            }, (response) => {
+                console.log('hi i am juan', response);
+            });
+        }
     }
+
 }
 
 </script>

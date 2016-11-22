@@ -3,11 +3,11 @@
 <div class="">
     <span class="text bold mono s">{{endpoint.method}}</span>
     <span class="text mono s m1l">{{endpoint.url}}</span>
-    <form v-on:submit.prevent="submit">
+    <form v-on:submit.prevent="submit(payload)">
         <div class="">
-            <textarea id="textarea" v-model="body" style="resize:none;height:100px" class="oh text s u-full-width" @keydown="tab" @keyup="resize">
+            <textarea id="textarea" v-model="payload" style="resize:none;height:100px" class="oh text s u-full-width" @keydown="tab" @keyup="resize">
         </div>
-        <button @click="submit">Send</button>
+        <button @click="submit(payload)">Send</button>
         <span class="text mono grey cp hgrey m1l" @click="cancel">Cancel</span>
     </form>
 </div>
@@ -20,7 +20,8 @@ export default {
     name: 'request',
     props : {
         bus: Object,
-        obj: Object
+        obj: Object,
+        submit: Function
     },
     data() {
         return {
@@ -54,15 +55,12 @@ export default {
                 ta.selectionStart = ta.selectionEnd = start + 1;
             }
         },
-        submit() {
-            this.bus.$emit('submit')
-        },
         cancel() {
             this.bus.$emit('cancel')
         }
     },
     computed:{
-        body() {return this.obj}
+        payload() {return this.obj}
     }
 }
 
