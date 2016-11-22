@@ -47,7 +47,7 @@ code {
         </div>
         <!-- Edit Container -->
         <div v-if="editing" class="columns" :class="edit_class">
-            <request :submit="submit" :cancel="cancel" :bus="bus"></request>
+            <request :obj="editing" :bus="bus"></request>
         </div>
     </div>
 </div>
@@ -70,8 +70,9 @@ export default {
     data() {
         return {
             bus: new Vue(),
-            editing: false,
+            editing: null,
             user: state.user,
+            input: {'id':'booger'},
             links: [{
                 id: 'link_1',
                 path: '/:search',
@@ -92,11 +93,11 @@ export default {
         submit() {
             console.log('submit')
         },
-        edit() {
-            this.editing=true
+        edit(link) {
+            this.editing = this.links.find((l) => link.id==l.id );
         },
         cancel() {
-            this.editing=false;
+            this.editing=null;
         }
     },
     computed: {

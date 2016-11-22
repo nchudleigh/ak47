@@ -20,7 +20,7 @@ export default {
     name: 'request',
     props : {
         bus: Object,
-        input: Object
+        obj: Object
     },
     data() {
         return {
@@ -30,9 +30,14 @@ export default {
             }
         }
     },
+    created(){
+        setTimeout(this.resize, 1);
+        this.bus.$on('edit', ()=>{setTimeout(this.resize, 1)});
+    },
     methods: {
         resize(e) {
                 var ta = document.getElementById('textarea');
+                if (!ta) return;
                 ta.style.height = 'auto';
                 ta.style.height = ta.scrollHeight + 'px';
         },
@@ -56,14 +61,8 @@ export default {
             this.bus.$emit('cancel')
         }
     },
-    computed: {
-        body() {
-            var content = "{"
-            for ( var key in input ) {
-                content += `\n\t"${key}": "${input[key]}",`
-            }
-            return content+"\n}"
-        }
+    computed:{
+        body() {return this.obj}
     }
 }
 
