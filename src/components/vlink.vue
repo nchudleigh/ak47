@@ -10,7 +10,7 @@
         </td>
         <td>
             <div class="text mono s ib" @click="edit('dest')" >
-                <div v-if="!editing" class="hbggrey p5 br cp oh" style="max-width:165px">
+                <div v-if="!editing" class="hbggrey p5 br cp oh" :style="maxwidth">
                     {{link.dest}}
                 </div>
                 <input id="input_dest"  v-if="editing" type="text" v-model="link.dest">
@@ -54,6 +54,13 @@ export default {
         this.bus.$off('edit', this.onedit)
         this.bus.$off('cancel', this.cancel)
     },
+    computed: {
+        maxwidth() {
+            return {
+                'maxwidth': this.editing?165:1000
+            }
+        }
+    }
 
 }
 </script>

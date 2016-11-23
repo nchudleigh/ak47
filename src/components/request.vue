@@ -17,7 +17,6 @@
 
 import api from '../js/api.js'
 
-
 export default {
     name: 'request',
     props : {
