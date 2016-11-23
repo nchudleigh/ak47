@@ -6,7 +6,7 @@
                 <router-link class="tab m1r" to="/user">USER</router-link>
             </span>
         </div>
-        <transition class="fade">
+        <transition name="fade" mode="out-in">
             <router-view></router-view>
         </transition>
     </div>

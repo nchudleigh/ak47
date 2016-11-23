@@ -1,34 +1,35 @@
 <template lang="html">
 
 <div class="">
-    <span class="text bold mono s">{{endpoint.method}}</span>
-    <span class="text mono s m1l">{{endpoint.url}}</span>
-    <form v-on:submit.prevent="submit(payload)">
-        <div class="">
-            <textarea id="textarea" v-model="payload" style="resize:none;height:100px" class="oh text s u-full-width" @keydown="tab" @keyup="resize">
-        </div>
-        <button @click="submit(payload)">Send</button>
-        <span class="text mono grey cp hgrey m1l" @click="cancel">Cancel</span>
-    </form>
+    <span class="text bold mono s">{{method}}</span>
+    <span class="text mono s m1l">{{endpoint}}</span>
+    <div class="">
+        <textarea id="textarea" v-model="payload" style="resize:none;height:100px" class="oh text s u-full-width" @keydown="tab" @keyup="resize">
+    </div>
+    <button @click="send">Send</button>
+    <span class="text mono grey cp hgrey m1l" @click="cancel">Cancel</span>
+    <div class="text mono m1t">{{error_message}}</div>
 </div>
 
 </template>
 
 <script>
 
+import api from '../js/api.js'
+
+
 export default {
     name: 'request',
     props : {
         bus: Object,
         obj: Object,
+        method: String,
+        url: String,
         submit: Function
     },
     data() {
         return {
-            endpoint: {
-                url: 'https://glock.run/links/link_8e3n2jdo2djlj',
-                method: 'PATCH'
-            }
+            error_message: ""
         }
     },
     created(){
@@ -55,12 +56,23 @@ export default {
                 ta.selectionStart = ta.selectionEnd = start + 1;
             }
         },
+        send(){
+            this.submit(this.payload)
+            .then(resp => {
+                console.log('request.vue: then');
+            })
+            .catch(resp => {
+                console.log('request.vue: catch');
+                this.error_message = resp.message
+            })
+        },
         cancel() {
             this.bus.$emit('cancel')
         }
     },
     computed:{
-        payload() {return this.obj}
+        payload() {return this.obj},
+        endpoint() {return `${api.domain}${this.url}${this.obj.id}`},
     }
 }
 

@@ -1,6 +1,7 @@
 <template>
-<router-view>
-</router-view>
+<transition name="fade" mode="out-in">
+    <router-view></router-view>
+</transition>
 </template>
 
 <script>
@@ -14,20 +15,6 @@ export default {
   components: {
     landing,
     dashboard
-  },
-  created() {
-    console.log('hi i am paul')
-    if (state.user.id) {
-      console.log('dashboard');
-      this.$router.push({
-        name: 'dashboard'
-      })
-    } else {
-      console.log('landing');
-      this.$router.push({
-        name: 'landing'
-      })
-    }
   }
 }
 </script>

@@ -47,7 +47,7 @@ code {
         </div>
         <!-- Edit Container -->
         <div v-if="editing" class="columns" :class="edit_class">
-            <request :obj="editing" :bus="bus" :submit="update"></request>
+            <request :obj="editing" :bus="bus" :submit="update" :method="'PATCH'" :url="'/links/'"></request>
         </div>
     </div>
 </div>
@@ -73,15 +73,8 @@ export default {
             bus: new Vue(),
             editing: null,
             user: state.user,
-            links: [{
-                id: 'link_1',
-                path: '/:search',
-                dest: 'google.com/:search'
-            }, {
-                id: 'link_2',
-                path: '/:version/*',
-                dest: 'd123.cloudfront.aws.com/:version/*'
-            }],
+            links: state.links,
+            update: links.update
         }
     },
     created() {
@@ -89,12 +82,6 @@ export default {
         this.bus.$on('cancel', this.cancel)
     },
     methods: {
-        update(payload) {
-            links.update(payload)
-            .then((response)=>{
-                console.log(response);
-            })
-        },
         edit(link) {
             this.editing = this.links.find((l) => link.id==l.id );
         },

@@ -2,6 +2,7 @@
 
 /* Table of contents
 ––––––––––––––––––––––––––––––––––––––––––––––––––
+- Transitions
 - Typography (text)
 - Borders
 - Colors
@@ -28,6 +29,16 @@
             Not Selected:#eee
 */
 
+
+/* Transitions
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .25s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
 
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
