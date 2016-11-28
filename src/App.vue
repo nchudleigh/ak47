@@ -26,7 +26,7 @@ export default {
         dashboard
     },
     created() {
-        Stripe.setPublishableKey(process.env.STRIPE_KEY)
+        // Stripe.setPublishableKey(process.env.STRIPE_KEY)
     }
 }
 

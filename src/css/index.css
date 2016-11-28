@@ -153,12 +153,20 @@ label {
     color: #707070;
 }
 
+.blue {
+    color: #4990E2;
+}
+
 .lightgrey {
     color: #B4B4B4;
 }
 
 .hgrey:hover {
     color: #2c2c2c;
+}
+
+.hblack:hover {
+    color: #464646;
 }
 
 .hbggrey:hover {

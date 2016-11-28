@@ -2,7 +2,7 @@
     <tr>
         <td>
             <div class="text mono s ib" @click="edit('path')" >
-                <div v-if="!editing" class="hbggrey p5 br cp">
+                <div v-if="!editing" class="hbggrey p5 br cp" :style="maxwidth">
                     {{link.path}}
                 </div>
                 <input id="input_path" v-if="editing" type="text" v-model="link.path">
@@ -30,6 +30,7 @@ export default {
     data() {
         return {
             editing: false,
+            editing_global: true,
         }
     },
     methods: {
@@ -40,9 +41,12 @@ export default {
             }, 10);
         },
         onedit(link) {
+            console.log('onedit', this.editing_global);
+            this.editing_global = true;
             this.editing = (link.id == this.link.id);
         },
         cancel(id) {
+            this.editing_global = true;
             this.editing=false;
         }
     },
@@ -57,7 +61,7 @@ export default {
     computed: {
         maxwidth() {
             return {
-                'maxwidth': this.editing?165:1000
+                'max-width': this.editing_global?'165px':'1000px'
             }
         }
     }

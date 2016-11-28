@@ -85,23 +85,23 @@ export default {
     name: 'users',
     data() {
         return {
-            user: state.user,
+            user: state.get('user'),
             number: "",
             cvc: "",
             exp_month: "",
-            exp_year
+            exp_year: ""
         }
     },
     methods: {
         submit() {
-            Stripe.card.createToken({
-                number: document.querySelector('#cc_num').value,
-                cvc: document.querySelector('#cc_cvc2').value,
-                exp_month: document.querySelector('#cc_expmonth').value,
-                exp_year: document.querySelector('#cc_expyear').value,
-            }, (response) => {
-                console.log('hi i am juan', response);
-            });
+            // Stripe.card.createToken({
+            //     number: document.querySelector('#cc_num').value,
+            //     cvc: document.querySelector('#cc_cvc2').value,
+            //     exp_month: document.querySelector('#cc_expmonth').value,
+            //     exp_year: document.querySelector('#cc_expyear').value,
+            // }, (response) => {
+            //     console.log('hi i am juan', response);
+            // });
         }
     }
 

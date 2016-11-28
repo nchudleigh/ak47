@@ -62,13 +62,22 @@
     </div>
 
     <div id="email_input" class="m1h">
-        <form v-on:submit.prevent="validate">
-            <input type="text" placeholder="your@email.com" v-model="email_addr" v-bind:class="{red:error_message}">
-            <button v-on:click="validate">Ok</button>
-            <div class="text mono">
-                {{error_message}}
-            </div>
-        </form>
+        <input type="text" placeholder="your@email.com" v-model="email_addr" v-bind:class="{red:error_message}">
+        <input v-if="show_login" type="text" placeholder="live_XXXXXXXXX" v-model="live_key">
+        <button @click="validate">Ok</button>
+        <div v-if="!show_login">
+            <a class="text s1 mono cp blue" @click="show_login=true">
+                I already have an account
+            </a>
+        </div>
+        <div v-if="show_login">
+            <a class="text s1 mono cp blue" @click="show_login=false">
+                I need to create an account
+            </a>
+        </div>
+        <div class="text mono">
+            {{error_message}}
+        </div>
     </div>
 </div>
 
@@ -83,18 +92,30 @@ export default {
     name: 'landing',
     data() {
         return {
+            show_login: false,
             email_addr: "",
+            live_key: "",
             error_message: ""
         }
     },
     methods: {
-        validate: function() {
+        login: ()=> {
+            let payload = {
+                email: this.email_addr,
+                key: this.live_key
+            }
+            user.get(payload)
+            .then(response => {
+                state.set(response, 'user');
+                this.$router.push({name:'links'})
+            })
+        },
+        validate: () => {
             if (this.email_addr.includes("@") && this.email_addr.includes(".")) {
                 this.error_message = "";
                 user.create(this.email_addr)
                 .then(response => {
-                    state.user.id = response.id;
-                    state.user = response;
+                    state.set(response, 'user');
                     this.$router.push({name:'links'});
                 })
                 .catch(err => {

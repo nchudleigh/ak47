@@ -72,8 +72,8 @@ export default {
         return {
             bus: new Vue(),
             editing: null,
-            user: state.user,
-            links: state.links,
+            user: state.get('user'),
+            links: state.get('links'),
             update: links.update
         }
     },
