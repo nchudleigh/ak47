@@ -11,7 +11,9 @@ const user = {
             })
             .then(api.checkStatus)
             .then(api.parseJson)
-            .then(state.save(response, 'user'))
+            .then((response) => {
+                state.set('user', response)
+            })
     },
     get(payload) {
         return fetch(`${api.domain}/users/`, {
@@ -21,7 +23,9 @@ const user = {
             })
             .then(api.checkStatus)
             .then(api.parseJson)
-            .then(state.save(response, 'user'))
+            .then((response) => {
+                state.set('user', response)
+            })
     }
 }
 

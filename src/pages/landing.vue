@@ -99,23 +99,25 @@ export default {
         }
     },
     methods: {
-        login: ()=> {
+        login() {
             let payload = {
                 email: this.email_addr,
                 key: this.live_key
             }
             user.get(payload)
             .then(response => {
-                state.set(response, 'user');
+                console.log('up in here');
                 this.$router.push({name:'links'})
             })
         },
-        validate: () => {
+        validate() {
+            console.log(this);
+            console.log(this.data);
             if (this.email_addr.includes("@") && this.email_addr.includes(".")) {
                 this.error_message = "";
                 user.create(this.email_addr)
                 .then(response => {
-                    state.set(response, 'user');
+                    console.log('up in here2');
                     this.$router.push({name:'links'});
                 })
                 .catch(err => {

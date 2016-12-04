@@ -26,6 +26,8 @@ export default {
         dashboard
     },
     created() {
+        state.init();
+        this.$router.push({name:'links'});
         // Stripe.setPublishableKey(process.env.STRIPE_KEY)
     }
 }
