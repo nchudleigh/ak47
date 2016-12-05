@@ -117,7 +117,6 @@ export default {
                 this.error_message = "";
                 user.create(this.email_addr)
                 .then(response => {
-                    console.log('up in here2');
                     this.$router.push({name:'links'});
                 })
                 .catch(err => {

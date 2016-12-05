@@ -1,19 +1,19 @@
 <template lang="html">
     <tr>
         <td>
-            <div class="text mono s ib" @click="edit('path')" >
-                <div v-if="!editing" class="hbggrey p5 br cp" :style="maxwidth">
+            <div class="text mono s ib" @click="click('path')" >
+                <div v-if="!active" class="hbggrey p5 br cp" :style="maxwidth">
                     {{link.path}}
                 </div>
-                <input id="input_path" v-if="editing" type="text" v-model="link.path">
+                <input id="input_path" v-if="active" type="text" v-model="link.path">
             </div>
         </td>
         <td>
-            <div class="text mono s ib" @click="edit('dest')" >
-                <div v-if="!editing" class="hbggrey p5 br cp oh" :style="maxwidth">
+            <div class="text mono s ib" @click="click('dest')" >
+                <div v-if="!active" class="hbggrey p5 br cp oh" :style="maxwidth">
                     {{link.dest}}
                 </div>
-                <input id="input_dest"  v-if="editing" type="text" v-model="link.dest">
+                <input id="input_dest"  v-if="active" type="text" v-model="link.dest">
             </div>
         </td>
     </tr>
@@ -24,44 +24,53 @@
 export default {
     name:'vlink',
     props: {
+        action: {
+            type: String,
+            default: 'update'
+        },
         link: Object,
         bus: Object
     },
     data() {
         return {
-            editing: false,
-            editing_global: true,
+            // whether this instance is being used right now
+            active: false,
+            // whether an instance of vlink is being used right now
+            active_global: false,
         }
     },
     methods: {
-        edit(field) {
-            this.bus.$emit('edit', this.link);
+        click(field) {
+            if(this.action=='create') this.bus.$emit('create', this.link);
+            else if (this.action=='update') this.bus.$emit('update', this.link);
             setTimeout(() => {
+                console.log(`${field}`);
                 document.getElementById(`input_${field}`).focus();
             }, 10);
         },
-        onedit(link) {
-            console.log('onedit', this.editing_global);
-            this.editing_global = true;
-            this.editing = (link.id == this.link.id);
+        onactive(link) {
+            this.active_global = true;
+            this.active = (link.id == this.link.id);
         },
         cancel(id) {
-            this.editing_global = true;
-            this.editing=false;
+            this.active_global = false;
+            this.active=false;
         }
     },
     created() {
-        this.bus.$on('edit', this.onedit)
-        this.bus.$on('cancel', this.cancel)
+        this.bus.$on('update', this.onactive);
+        this.bus.$on('create', this.onactive);
+        this.bus.$on('cancel', this.cancel);
     },
     destroyed() {
-        this.bus.$off('edit', this.onedit)
-        this.bus.$off('cancel', this.cancel)
+        this.bus.$off('update', this.onactive);
+        this.bus.$off('create', this.onactive);
+        this.bus.$off('cancel', this.cancel);
     },
     computed: {
         maxwidth() {
             return {
-                'max-width': this.editing_global?'165px':'1000px'
+                'max-width': this.active_global?'165px':'1000px'
             }
         }
     }

@@ -8,28 +8,31 @@ const state = {
             email: "",
             live_key: ""
         },
-        links: []
-            // links: [{
-            //     id: 'link_1',
-            //     path: '/:search',
-            //     dest: 'google.com/:search'
-            // }, {
-            //     id: 'link_2',
-            //     path: '/:version/*',
-            //     dest: 'd123.cloudfront.aws.com/:version/*'
-            // }]
+        links: [{
+            id: 'link_1',
+            path: '/:search',
+            dest: 'google.com/:search'
+        }, {
+            id: 'link_2',
+            path: '/:version/*',
+            dest: 'd123.cloudfront.aws.com/:version/*'
+        }]
     },
     init() {
         let user = store.get('user');
         this.data.user = user ? user : {
             id: ""
         };
-        let links = store.get('links');
-        this.data.links = links ? links : [];
+        // let links = store.get('links');
+        // console.log(links);
+        // this.data.links = links ? links : [];
     },
     get(key, id = null) {
         if (id && typeof this[key] == 'object') return this.data[key][id] = payload;
-        else return this.data[key];
+        else {
+            console.log('this.data', this.data['links']);
+            return this.data[key];
+        };
     },
     set(key, payload, id = null) {
         try {

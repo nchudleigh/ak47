@@ -41,13 +41,17 @@ code {
 
                 <!-- List -->
                 <tbody>
+                    <vlink :link="placeholder" :bus="bus" :action="'create'"/>
                     <vlink :link="link" :bus="bus" v-for="(link, index) in links"/>
                 </tbody>
             </table>
         </div>
         <!-- Edit Container -->
-        <div v-if="editing" class="columns" :class="edit_class">
-            <request :obj="editing" :bus="bus" :submit="update" :method="'PATCH'" :url="'/links/'"></request>
+        <div v-if="updating" class="columns" :class="active_class">
+            <request :obj="updating" :bus="bus" :submit="update" :method="'PATCH'" :url="'/links/'"></request>
+        </div>
+        <div v-if="creating" class="columns" :class="active_class">
+            <request :obj="creating" :bus="bus" :submit="create" :method="'POST'" :url="'/links/'"></request>
         </div>
     </div>
 </div>
@@ -71,36 +75,51 @@ export default {
     data() {
         return {
             bus: new Vue(),
-            editing: null,
+            active: false,
+            creating: null,
+            updating: null,
             user: state.get('user'),
             links: state.get('links'),
-            update: links.update
+            create: links.create,
+            update: links.update,
+            placeholder: {path:'/[your path here]', dest:'https://[your destination here]'}
         }
     },
     created() {
-        this.bus.$on('edit', this.edit)
+        this.bus.$on('create', this.oncreate)
+        this.bus.$on('update', this.onupdate)
         this.bus.$on('cancel', this.cancel)
     },
     methods: {
-        edit(link) {
-            this.editing = this.links.find((l) => link.id==l.id );
+        oncreate(link) {
+            this.creating = link;
+            this.updating = null;
+            this.active = true;
+        },
+        onupdate(link) {
+            this.active = true;
+            this.updating = this.links.find((l) => link.id==l.id );
+            this.creating = null;
         },
         cancel() {
-            this.editing=null;
+            this.creating=null;
+            this.updating=null;
+            this.active=false;
+            this.placeholder = {path:'/[your path here]', dest:'https://[your destination here]'};
         }
     },
     computed: {
         table_class() {
                 return {
-                    six: this.editing,
-                    bor: this.editing,
-                    twelve: !this.editing
+                    six: this.active,
+                    bor: this.active,
+                    twelve: !this.active
                 }
         },
-        edit_class() {
+        active_class() {
             return {
-                six: this.editing,
-                zero: !this.editing
+                six: this.active,
+                zero: !this.active
             }
         }
     }
