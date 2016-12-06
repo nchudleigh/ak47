@@ -58,20 +58,22 @@ export default {
         send(){
             this.submit(this.payload)
             .then(resp => {
-                console.log('request.vue: then');
+                console.log(resp);
             })
             .catch(resp => {
-                console.log('request.vue: catch');
                 this.error_message = resp.message
             })
         },
         cancel() {
-            this.bus.$emit('cancel')
+            this.bus.$emit('cancel');
         }
     },
     computed:{
         payload() {return this.obj},
-        endpoint() {return `${api.domain}${this.url}${this.obj.id}`},
+        endpoint() {
+            let id = this.obj.id ? this.obj.id : "";
+            return `${api.domain}${this.url}${id}`;
+        },
     }
 }
 

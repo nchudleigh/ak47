@@ -86,6 +86,7 @@
 <script>
 
 import user from '../js/user'
+import links from '../js/links'
 import state from '../js/state'
 
 export default {
@@ -106,13 +107,10 @@ export default {
             }
             user.get(payload)
             .then(response => {
-                console.log('up in here');
                 this.$router.push({name:'links'})
             })
         },
         validate() {
-            console.log(this);
-            console.log(this.data);
             if (this.email_addr.includes("@") && this.email_addr.includes(".")) {
                 this.error_message = "";
                 user.create(this.email_addr)

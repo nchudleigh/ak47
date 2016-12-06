@@ -99,9 +99,7 @@ export default {
             //     cvc: document.querySelector('#cc_cvc2').value,
             //     exp_month: document.querySelector('#cc_expmonth').value,
             //     exp_year: document.querySelector('#cc_expyear').value,
-            // }, (response) => {
-            //     console.log('hi i am juan', response);
-            // });
+            // }, (response) => {});
         }
     }
 

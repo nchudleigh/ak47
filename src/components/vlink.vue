@@ -1,7 +1,7 @@
 <template lang="html">
     <tr>
         <td>
-            <div class="text mono s ib" @click="click('path')" >
+            <div class="text mono s ib" @click="click('path')">
                 <div v-if="!active" class="hbggrey p5 br cp" :style="maxwidth">
                     {{link.path}}
                 </div>
@@ -9,7 +9,7 @@
             </div>
         </td>
         <td>
-            <div class="text mono s ib" @click="click('dest')" >
+            <div class="text mono s ib" @click="click('dest')">
                 <div v-if="!active" class="hbggrey p5 br cp oh" :style="maxwidth">
                     {{link.dest}}
                 </div>
@@ -44,7 +44,6 @@ export default {
             if(this.action=='create') this.bus.$emit('create', this.link);
             else if (this.action=='update') this.bus.$emit('update', this.link);
             setTimeout(() => {
-                console.log(`${field}`);
                 document.getElementById(`input_${field}`).focus();
             }, 10);
         },

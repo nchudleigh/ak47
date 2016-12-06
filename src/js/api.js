@@ -1,7 +1,14 @@
+import state from './state'
+
 var api = {
     domain: process.env.API_DOMAIN,
     headers: {
         'Content-Type': 'application/json'
+    },
+    getHeaders() {
+        let user = state.get('user');
+        this.headers['Authorization'] = "Basic " + btoa(user.key + ":" + user.live_key);
+        return this.headers;
     },
     checkStatus(response) {
         if (response.status >= 200 && response.status < 300) {
