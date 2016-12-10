@@ -2,16 +2,19 @@
 
 <!-- Landing Page -->
 <div class="container">
+    <div class="text serif l m1h" title="glock.link">
+        Gl
+    </div>
     <div class="m1h">
-        <div class="text mono">
+        <div class="text mono grey">
             What does it do?
         </div>
         <div class="text sans bold">
-            Glock redirects, rewrites and tracks link clicks
+            Redirects, rewrites and tracks link clicks
         </div>
     </div>
     <div class="m1h">
-        <div class="text mono">
+        <div class="text mono grey">
             What can I do with it?
         </div>
         <div class="text sans bold">
@@ -24,18 +27,18 @@
         </div>
         <div class="text sans bold m1l">
             <a href="#custom-domain">
-                Use a custom domain and track your Affiliate Links
+                Own and Track your Affiliate Links
             </a>
         </div>
         <div class="text sans bold m1l">
             <a href="#static-files" class="text sans">
-                Easily version Static Files on a CDN
+                Versioning and Rollback for Static Files
             </a>
         </div>
     </div>
 
     <div class="m1h">
-        <div class="text mono">
+        <div class="text mono grey">
             How do I use it?
         </div>
         <div class="text sans bold">
@@ -44,7 +47,7 @@
     </div>
 
     <div class="m1h">
-        <div class="text mono">
+        <div class="text mono grey">
             How much does it cost?
         </div>
         <div class="text sans bold">
