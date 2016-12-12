@@ -56,6 +56,7 @@ export default {
             }
         },
         send(){
+            console.log();
             this.submit(this.payload)
             .then(resp => {
                 console.log(resp);
@@ -69,11 +70,13 @@ export default {
         }
     },
     computed:{
-        payload() {return this.obj},
         endpoint() {
             let id = this.obj.id ? this.obj.id : "";
             return `${api.domain}${this.url}${id}`;
         },
+        payload() {
+            return this.obj;
+        }
     }
 }
 

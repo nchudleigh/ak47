@@ -15,11 +15,10 @@ const user = {
                 state.set('user', response)
             })
     },
-    get(payload) {
-        return fetch(`${api.domain}/users/`, {
+    get(key, live_key) {
+        return fetch(`${api.domain}/users/${key}`, {
                 method: 'GET',
-                headers: api.headers,
-                body: JSON.stringify(payload)
+                headers: api.getHeaders(key, live_key)
             })
             .then(api.checkStatus)
             .then(api.parseJson)

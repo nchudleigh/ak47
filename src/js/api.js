@@ -5,10 +5,15 @@ var api = {
     headers: {
         'Content-Type': 'application/json'
     },
-    getHeaders() {
-        let user = state.get('user');
-        this.headers['Authorization'] = "Basic " + btoa(user.key + ":" + user.live_key);
-        return this.headers;
+    getHeaders(key = null, live_key = null, headers = this.headers) {
+        if (!key || !live_key) {
+            let user = state.get('user');
+            key = user.key;
+            live_key = user.live_key;
+        }
+        console.log(key, live_key);
+        headers['Authorization'] = "Basic " + btoa(key + ":" + live_key);
+        return headers;
     },
     checkStatus(response) {
         if (response.status >= 200 && response.status < 300) {

@@ -253,6 +253,14 @@ label {
     overflow: hidden;
 }
 
+.am {
+    vertical-align: middle;
+}
+
+.ns{
+    user-select: none;
+}
+
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
