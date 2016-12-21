@@ -1,36 +1,36 @@
-import api from './api'
-import state from './state'
+import fetch from 'whatwg-fetch';
+import api from './api';
 
 const links = {
     get() {
-        return fetch(`${api.domain}/links/`, {
-                methods: 'GET',
-                headers: api.getHeaders(),
-            })
+        const options = {
+            methods: 'GET',
+            headers: api.getHeaders(),
+        };
+        return fetch(`${api.domain}/links/`, options)
             .then(api.checkStatus)
-            .then(api.parseJson)
-            .then(links => {
-                console.log(links);
-            })
+            .then(api.parseJson);
     },
     create(payload) {
-        return fetch(`${api.domain}/links/`, {
-                method: 'POST',
-                headers: api.getHeaders(),
-                body: JSON.stringify(payload)
-            })
+        const options = {
+            method: 'POST',
+            headers: api.getHeaders(),
+            body: JSON.stringify(payload),
+        };
+        return fetch(`${api.domain}/links/`, options)
             .then(api.checkStatus)
-            .then(api.parseJson)
+            .then(api.parseJson);
     },
     update(payload) {
-        return fetch(`${api.domain}/links/${payload.id}`, {
-                method: 'PATCH',
-                headers: api.getHeaders(),
-                body: JSON.stringify(payload)
-            })
+        const options = {
+            method: 'PATCH',
+            headers: api.getHeaders(),
+            body: JSON.stringify(payload),
+        };
+        return fetch(`${api.domain}/links/${payload.id}`, options)
             .then(api.checkStatus)
-            .then(api.parseJson)
-    }
-}
+            .then(api.parseJson);
+    },
+};
 
-export default links
+export default links;

@@ -60,17 +60,17 @@ code {
 
 <script>
 
-import state from '../js/state'
-import links from '../js/links'
-import request from './request'
-import vlink from './vlink'
-import Vue from 'vue'
+import Vue from 'vue';
+import state from '../js/state';
+import links from '../js/links';
+import request from './request';
+import vlink from './vlink';
 
 export default {
     name: 'links',
     components: {
         request,
-        vlink
+        vlink,
     },
     data() {
         return {
@@ -82,13 +82,13 @@ export default {
             links: state.get('links'),
             create: links.create,
             update: links.update,
-            placeholder: {path:'/[your path here]', dest:'https://[your destination here]'}
-        }
+            placeholder: { path: '/[your path here]', dest: 'https://[your destination here]' },
+        };
     },
     created() {
-        this.bus.$on('create', this.oncreate)
-        this.bus.$on('update', this.onupdate)
-        this.bus.$on('cancel', this.cancel)
+        this.bus.$on('create', this.oncreate);
+        this.bus.$on('update', this.onupdate);
+        this.bus.$on('cancel', this.cancel);
     },
     methods: {
         oncreate(link) {
@@ -98,31 +98,30 @@ export default {
         },
         onupdate(link) {
             this.active = true;
-            this.updating = this.links.find((l) => link.id==l.id );
+            this.updating = this.links.find(l => link.id === l.id);
             this.creating = null;
         },
         cancel() {
-            this.creating=null;
-            this.updating=null;
-            this.active=false;
-            this.placeholder = {path:'/[your path here]', dest:'https://[your destination here]'};
-        }
+            this.creating = null;
+            this.updating = null;
+            this.active = false;
+            this.placeholder = { path: '/[your path here]', dest: 'https://[your destination here]' };
+        },
     },
     computed: {
         table_class() {
-                return {
-                    six: this.active,
-                    bor: this.active,
-                    twelve: !this.active
-                }
+            return {
+                six: this.active,
+                bor: this.active,
+                twelve: !this.active,
+            };
         },
         active_class() {
             return {
                 six: this.active,
-                zero: !this.active
-            }
-        }
-    }
-}
-
+                zero: !this.active,
+            };
+        },
+    },
+};
 </script>

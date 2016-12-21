@@ -1,8 +1,6 @@
-<style src="./css/normalize.css">
+<style src="./css/normalize.css"></style>
 
-</style> <style src="./css/index.css">
-
-</style>
+<style src="./css/index.css"></style>
 
 <template>
 
@@ -13,23 +11,20 @@
 </template>
 
 <script>
-
-import landing from './pages/landing'
-import dashboard from './pages/dashboard'
-import User from './js/user'
-import state from './js/state'
+import landing from './pages/landing';
+import dashboard from './pages/dashboard';
+import state from './js/state';
 
 export default {
     name: 'app',
     components: {
         landing,
-        dashboard
+        dashboard,
     },
     created() {
         state.init();
-        this.$router.push({name:'links'});
+        this.$router.push({ name: 'links' });
         // Stripe.setPublishableKey(process.env.STRIPE_KEY)
-    }
-}
-
+    },
+};
 </script>

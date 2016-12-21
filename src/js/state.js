@@ -1,36 +1,34 @@
-import store from 'store'
+import store from 'store';
 
 const state = {
     data: {
         user: {
-            id: "",
-            key: "",
-            email: "",
-            live_key: ""
+            id: '',
+            key: '',
+            email: '',
+            live_key: '',
         },
-        links: []
+        links: [],
     },
     init() {
-        let user = store.get('user');
-        this.data.user = user ? user : {
-            id: ""
+        const user = store.get('user');
+        this.data.user = user || {
+            id: '',
         };
     },
     get(key, id = null) {
-        if (id && typeof this[key] == 'object') return this.data[key][id] = payload;
-        else {
-            return this.data[key];
-        };
+        if (id && typeof this[key] === 'object') return this.data[key][id];
+        return this.data[key];
     },
     set(key, payload, id = null) {
         try {
-            if (id && typeof this[key] == 'object') this.data[key][id] = payload;
+            if (id && typeof this[key] === 'object') this.data[key][id] = payload;
             else this.data[key] = payload;
             store.set(key, payload);
         } catch (e) {
             console.error(`Could not store ${key}:${id}`);
         }
-    }
-}
+    },
+};
 
-export default state
+export default state;

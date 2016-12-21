@@ -15,73 +15,71 @@
 
 <script>
 
-import api from '../js/api.js'
+import api from '../js/api';
 
 export default {
     name: 'request',
-    props : {
+    props: {
         bus: Object,
         obj: Object,
         method: String,
         url: String,
-        submit: Function
+        submit: Function,
     },
     data() {
         return {
-            error_message: "",
-            payload: {}
-        }
+            error_message: '',
+            payload: {},
+        };
     },
-    created(){
+    created() {
         setTimeout(this.resize, 1);
-        this.bus.$on('edit', ()=>{setTimeout(this.resize, 1)});
+        this.bus.$on('edit', () => setTimeout(this.resize, 1));
         this.payload = this.obj;
     },
     methods: {
-        resize(e) {
-                var ta = document.getElementById('textarea');
-                if (!ta) return;
-                ta.style.height = 'auto';
-                ta.style.height = ta.scrollHeight + 'px';
+        resize() {
+            const ta = document.getElementById('textarea');
+            if (!ta) return;
+            ta.style.height = 'auto';
+            ta.style.height = `${ta.scrollHeight}px`;
         },
-        tab(e) {
-            var ta = document.getElementById('textarea');
-            var start = ta.selectionStart;
-            var end = ta.selectionEnd;
+        tab() {
+            const ta = document.getElementById('textarea');
+            const start = ta.selectionStart;
+            const end = ta.selectionEnd;
             // set textarea value to: text before caret + tab + text after caret
-            ta.value = ta.value.substring(0, start) + "\t" + ta.value.substring(end);
+            ta.value = `${ta.value.substring(0, start)}\t${ta.value.substring(end)}`;
             // put caret at right position again
             ta.selectionStart = ta.selectionEnd = start + 1;
         },
-        send(){
-            console.log();
+        send() {
             this.submit(this.payload)
-            .then(resp => {
-                console.log(resp);
-            })
-            .catch(resp => {
-                this.error_message = resp.message
-            })
+                .then(
+                    (resp) => { this.error_message = resp.message; },
+                    (resp) => { this.error_message = resp.message; },
+                )
+                .catch((resp) => { this.error_message = resp.message; });
         },
         cancel() {
             this.bus.$emit('cancel');
-        }
+        },
     },
     watch: {
         obj: {
-            handler(){
+            handler() {
                 // if obj is updated, update payload
                 this.payload = this.obj;
             },
-            deep:true
-        }
+            deep: true,
+        },
     },
-    computed:{
+    computed: {
         endpoint() {
-            let id = this.obj.id ? this.obj.id : "";
+            const id = this.obj.id ? this.obj.id : '';
             return `${api.domain}${this.url}${id}`;
-        }
-    }
-}
+        },
+    },
+};
 
 </script>

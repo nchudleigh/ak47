@@ -14,8 +14,8 @@
 
 <script>
 export default {
-    name: 'dashboard'
-}
+    name: 'dashboard',
+};
 </script>
 
 <style lang="css" scoped>
