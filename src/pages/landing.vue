@@ -99,43 +99,41 @@
 
 <script>
 
-import user from '../js/user'
-import links from '../js/links'
-import state from '../js/state'
+import user from '../js/user';
 
 export default {
     name: 'landing',
     data() {
         return {
             show_login: false,
-            email_addr: "",
-            live_key: "",
-            error_message: ""
-        }
+            email_addr: '',
+            live_key: '',
+            error_message: '',
+        };
     },
     methods: {
         login() {
             user.get(this.key, this.live_key)
-            .then(response => {
-                this.$router.push({name:'links'})
-            })
+                .then(() => {
+                    this.$router.push({ name: 'links' });
+                });
         },
         create() {
-            if (this.email_addr.includes("@") && this.email_addr.includes(".")) {
-                this.error_message = "";
+            if (this.email_addr.includes('@') && this.email_addr.includes('.')) {
+                this.error_message = '';
             } else {
-                this.error_message = "Invalid email address";
+                this.error_message = 'Invalid email address';
                 return;
             }
             user.create(this.email_addr)
-            .then(response => {
-                this.$router.push({name:'links'});
-            })
-            .catch(err => {
-                this.error_message = `Request failed ${err.message}`;
-            });
-        }
-    }
-}
+                .then(() => {
+                    this.$router.push({ name: 'links' });
+                })
+                .catch((err) => {
+                    this.error_message = `Request failed ${err.message}`;
+                });
+        },
+    },
+};
 
 </script>

@@ -79,18 +79,18 @@
 
 <script>
 
-import state from '../js/state'
+import state from '../js/state';
 
 export default {
     name: 'users',
     data() {
         return {
             user: state.get('user'),
-            number: "",
-            cvc: "",
-            exp_month: "",
-            exp_year: ""
-        }
+            number: '',
+            cvc: '',
+            exp_month: '',
+            exp_year: '',
+        };
     },
     methods: {
         submit() {
@@ -100,9 +100,8 @@ export default {
             //     exp_month: document.querySelector('#cc_expmonth').value,
             //     exp_year: document.querySelector('#cc_expyear').value,
             // }, (response) => {});
-        }
-    }
-
-}
+        },
+    },
+};
 
 </script>

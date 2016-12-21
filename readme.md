@@ -1,6 +1,6 @@
 # ak47
 
-> web client for glock
+> Frontend for glock
 
 ## Build Setup
 

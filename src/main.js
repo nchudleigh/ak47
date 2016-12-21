@@ -1,22 +1,23 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import App from './App'
-import routes from './routes'
-import fetch from 'whatwg-fetch'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import App from './App';
+import routes from './routes';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 // TODO: init stripe
-
 const router = new VueRouter({
     routes,
-    mode: 'history'
-})
+    mode: 'history',
+});
 
-new Vue({
+const config = {
     template: '<App/>',
     router,
     components: {
-        App
-    }
-}).$mount('#app')
+        App,
+    },
+};
+
+new Vue(config)
+    .$mount('#app');

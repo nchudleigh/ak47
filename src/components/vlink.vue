@@ -22,14 +22,14 @@
 <script>
 
 export default {
-    name:'vlink',
+    name: 'vlink',
     props: {
         action: {
             type: String,
-            default: 'update'
+            default: 'update',
         },
         link: Object,
-        bus: Object
+        bus: Object,
     },
     data() {
         return {
@@ -37,24 +37,24 @@ export default {
             active: false,
             // whether an instance of vlink is being used right now
             active_global: false,
-        }
+        };
     },
     methods: {
         click(field) {
-            if(this.action=='create') this.bus.$emit('create', this.link);
-            else if (this.action=='update') this.bus.$emit('update', this.link);
+            if (this.action === 'create') this.bus.$emit('create', this.link);
+            else if (this.action === 'update') this.bus.$emit('update', this.link);
             setTimeout(() => {
                 document.getElementById(`input_${field}`).focus();
             }, 10);
         },
         onactive(link) {
             this.active_global = true;
-            this.active = (link.id == this.link.id);
+            this.active = (link.id === this.link.id);
         },
-        cancel(id) {
+        cancel() {
             this.active_global = false;
-            this.active=false;
-        }
+            this.active = false;
+        },
     },
     created() {
         this.bus.$on('update', this.onactive);
@@ -69,12 +69,11 @@ export default {
     computed: {
         maxwidth() {
             return {
-                'max-width': this.active_global?'165px':'1000px'
-            }
-        }
-    }
-
-}
+                'max-width': this.active_global ? '165px' : '1000px',
+            };
+        },
+    },
+};
 </script>
 
 <style lang="css">

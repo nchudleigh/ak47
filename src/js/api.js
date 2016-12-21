@@ -1,30 +1,31 @@
-import state from './state'
+import state from './state';
 
-var api = {
+const api = {
     domain: process.env.API_DOMAIN,
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
     },
-    getHeaders(key = null, live_key = null, headers = this.headers) {
-        if (!key || !live_key) {
-            let user = state.get('user');
+    getHeaders(okey = '', olive_key = '', headers = this.headers) {
+        let key = '';
+        let live_key = '';
+        if (!okey || !olive_key) {
+            const user = state.get('user');
             key = user.key;
             live_key = user.live_key;
         }
-        console.log(key, live_key);
-        headers['Authorization'] = "Basic " + btoa(key + ":" + live_key);
+        const b64_key = btoa(`${key}:${live_key}`);
+        headers.Authorization = `Basic ${b64_key}`;
         return headers;
     },
     checkStatus(response) {
         if (response.status >= 200 && response.status < 300) {
-            return response
-        } else {
-            var error = new Error(`${response.status} ${response.statusText}`)
-            error.response = response
-            throw error
+            return response;
         }
+        const error = new Error(`${response.status} ${response.statusText}`);
+        error.response = response;
+        throw error;
     },
-    parseJson: response => response.json()
-}
+    parseJson: response => response.json(),
+};
 
-export default api
+export default api;
