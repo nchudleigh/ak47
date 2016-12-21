@@ -6,16 +6,18 @@ import routes from './routes';
 Vue.use(VueRouter);
 
 // TODO: init stripe
-
 const router = new VueRouter({
     routes,
     mode: 'history',
 });
 
-new Vue({
+const config = {
     template: '<App/>',
     router,
     components: {
         App,
     },
-}).$mount('#app');
+};
+
+new Vue(config)
+    .$mount('#app');
