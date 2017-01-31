@@ -22,9 +22,7 @@ module.exports = {
     },
     // add your custom rules here
     'rules': {
-        "no-console": ["error", {
-            allow: ["warn", "error"]
-        }],
+        "no-console": 0,
         "no-param-reassign": 0,
         "indent": ["error", 4, {
             "MemberExpression": 1,

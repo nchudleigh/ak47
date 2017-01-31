@@ -1,8 +1,8 @@
-import fetch from 'whatwg-fetch';
 import api from './api';
 
 const links = {
     get() {
+        console.log('in this house');
         const options = {
             methods: 'GET',
             headers: api.getHeaders(),

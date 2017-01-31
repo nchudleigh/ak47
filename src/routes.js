@@ -8,7 +8,8 @@ export default [{
     path: '/',
     component: landing,
     beforeEnter: (to, from, next) => {
-        if (state.get('user').id) {
+        if (state.get('user')
+            .id) {
             next({
                 name: 'links',
             });
@@ -18,10 +19,10 @@ export default [{
     },
 }, {
     path: '/links',
-    name: 'dashboard',
     component: dashboard,
     beforeEnter: (to, from, next) => {
-        if (!state.get('user').id) {
+        if (!state.get('user')
+            .id) {
             next({
                 path: '/',
             });

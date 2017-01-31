@@ -100,6 +100,7 @@
 <script>
 
 import user from '../js/user';
+import links from '../js/links';
 
 export default {
     name: 'landing',
@@ -116,7 +117,8 @@ export default {
             user.get(this.key, this.live_key)
                 .then(() => {
                     this.$router.push({ name: 'links' });
-                });
+                })
+                .then(links.get);
         },
         create() {
             if (this.email_addr.includes('@') && this.email_addr.includes('.')) {

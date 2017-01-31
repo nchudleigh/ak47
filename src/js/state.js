@@ -8,17 +8,24 @@ const state = {
             email: '',
             live_key: '',
         },
-        links: [],
+        links: {},
     },
     init() {
         const user = store.get('user');
-        this.data.user = user || {
-            id: '',
-        };
+        if (user) {
+            this.data.user = user;
+        }
     },
     get(key, id = null) {
         if (id && typeof this[key] === 'object') return this.data[key][id];
         return this.data[key];
+    },
+    update(key, payload) {
+        // try {
+        Object.assign(this.data[key], payload);
+        // } catch (e) {
+            // console.error(`Could not store ${key}`);
+        // }
     },
     set(key, payload, id = null) {
         try {

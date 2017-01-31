@@ -22,9 +22,11 @@ export default {
     props: {
         bus: Object,
         obj: Object,
+        fields: Array,
         method: String,
         url: String,
         submit: Function,
+        select: String,
     },
     data() {
         return {
@@ -34,8 +36,8 @@ export default {
     },
     created() {
         setTimeout(this.resize, 1);
-        this.bus.$on('edit', () => setTimeout(this.resize, 1));
         this.payload = this.obj;
+        this.bus.$on('error', (error) => { this.error_message = error; });
     },
     methods: {
         resize() {
@@ -66,9 +68,14 @@ export default {
         },
     },
     watch: {
+        payload: {
+            handler() {
+                this.bus.$emit('change', this.payload);
+            },
+            deep: true,
+        },
         obj: {
             handler() {
-                // if obj is updated, update payload
                 this.payload = this.obj;
             },
             deep: true,

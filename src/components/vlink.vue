@@ -16,6 +16,11 @@
                 <input id="input_dest"  v-if="active" type="text" v-model="link.dest">
             </div>
         </td>
+        <td>
+            <a v-if="user && !active_global" class="text s blue cp ul" :href="fullpath" target="_blank" >
+                Go <i class="fa fa-external-link-square"></i>
+            </a>
+        </td>
     </tr>
 </template>
 
@@ -30,6 +35,7 @@ export default {
         },
         link: Object,
         bus: Object,
+        user: Object,
     },
     data() {
         return {
@@ -40,6 +46,15 @@ export default {
         };
     },
     methods: {
+        validate() {
+            let error = '';
+            error = this.link.path.startsWith('/') ? error : 'Path must start with a /';
+            error = this.link.path.indexOf(' ') === -1 ? error : 'No spaces allowed in path';
+
+            error = this.link.dest.startsWith('http') ? error : 'Dest must start with http';
+            error = this.link.dest.indexOf(' ') === -1 ? error : 'No spaces allowed in dest';
+            this.bus.$emit('error', error);
+        },
         click(field) {
             if (this.action === 'create') this.bus.$emit('create', this.link);
             else if (this.action === 'update') this.bus.$emit('update', this.link);
@@ -66,11 +81,22 @@ export default {
         this.bus.$off('create', this.onactive);
         this.bus.$off('cancel', this.cancel);
     },
+    watch: {
+        link: {
+            handler() {
+                this.validate();
+            },
+            deep: true,
+        },
+    },
     computed: {
         maxwidth() {
             return {
                 'max-width': this.active_global ? '165px' : '1000px',
             };
+        },
+        fullpath() {
+            return `https://${this.user.key}.glock.link${this.link.path}`;
         },
     },
 };
