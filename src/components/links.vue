@@ -25,8 +25,8 @@ code {
     </div>
     <div class="row m2t">
         <!-- Table Container -->
-        <div class="columns p1b" :class="table_class">
-            <table class="u-full-width oh">
+        <div class="columns p1b oh" :class="table_class">
+            <table class="u-full-width">
                 <!-- Headers -->
                 <thead>
                     <tr>
@@ -36,19 +36,21 @@ code {
                         <th class="text mono s bold">
                             Destination
                         </th>
+                        <th class="text mono s bold">
+                        </th>
                     </tr>
                 </thead>
 
                 <!-- List -->
                 <tbody>
                     <vlink :link="placeholder" :bus="bus" :action="'create'"/>
-                    <vlink :link="link" :bus="bus" v-for="(link, index) in links"/>
+                    <vlink :link="link" :bus="bus" :user="user" v-for="(link, index) in links"/>
                 </tbody>
             </table>
         </div>
         <!-- Edit Container -->
         <div v-if="updating" class="columns" :class="active_class">
-            <request :obj="updating" :bus="bus" :submit="update" :method="'PATCH'" :url="'/links/'"></request>
+            <request :obj="updating" :bus="bus" :submit="update" :method="'PATCH'" :url="'/links/'" :fields="['path', 'dest']"></request>
         </div>
         <div v-if="creating" class="columns" :class="active_class">
             <request :obj="creating" :bus="bus" :submit="create" :method="'POST'" :url="'/links/'"></request>
@@ -59,7 +61,6 @@ code {
 </template>
 
 <script>
-
 import Vue from 'vue';
 import state from '../js/state';
 import links from '../js/links';
@@ -74,21 +75,31 @@ export default {
     },
     data() {
         return {
+            // event bus
             bus: new Vue(),
+            // true if creating or editing
             active: false,
+            // object being created
             creating: null,
+            // object being updated
             updating: null,
+            // the current user
             user: state.get('user'),
+            // the current list of links
             links: state.get('links'),
+            // the api call for create
             create: links.create,
+            // the api call for update
             update: links.update,
-            placeholder: { path: '/[your path here]', dest: 'https://[your destination here]' },
+            // placeholder link obj for create
+            placeholder: { path: '/path', dest: 'https://destination.com' },
         };
     },
     created() {
         this.bus.$on('create', this.oncreate);
         this.bus.$on('update', this.onupdate);
-        this.bus.$on('cancel', this.cancel);
+        this.bus.$on('change', this.onchange);
+        this.bus.$on('cancel', this.oncancel);
     },
     methods: {
         oncreate(link) {
@@ -101,11 +112,26 @@ export default {
             this.updating = this.links.find(l => link.id === l.id);
             this.creating = null;
         },
-        cancel() {
+        onchange(payload) {
+            if (typeof payload !== 'string') return;
+            try {
+                payload = payload.replace('\n', '');
+                payload = JSON.parse(payload);
+                this.creating = this.creating ? payload : this.creating;
+                this.placeholder = this.placeholder ? payload : this.placeholder;
+                this.updating = this.updating ? payload : this.updating;
+                this.bus.$emit('error', '');
+            } catch (e) {
+                this.bus.$emit('error', 'Invalid JSON');
+            }
+            console.log(typeof payload);
+            console.log(payload);
+        },
+        oncancel() {
             this.creating = null;
             this.updating = null;
             this.active = false;
-            this.placeholder = { path: '/[your path here]', dest: 'https://[your destination here]' };
+            this.placeholder = { path: '/path', dest: 'https://destination.com' };
         },
     },
     computed: {

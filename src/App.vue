@@ -14,6 +14,7 @@
 import landing from './pages/landing';
 import dashboard from './pages/dashboard';
 import state from './js/state';
+import links from './js/links';
 
 export default {
     name: 'app',
@@ -23,7 +24,11 @@ export default {
     },
     created() {
         state.init();
+        links.get().then((results) => {
+            state.update('links', results);
+        });
         this.$router.push({ name: 'links' });
+        console.log('refresh');
         // Stripe.setPublishableKey(process.env.STRIPE_KEY)
     },
 };

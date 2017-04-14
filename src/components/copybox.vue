@@ -12,10 +12,8 @@
 </template>
 
 <script>
-
 export default {
     name: 'copybox',
-    props: ['content']
-}
-
+    props: ['content'],
+};
 </script>

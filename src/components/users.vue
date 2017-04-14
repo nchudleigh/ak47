@@ -78,7 +78,6 @@
 </template>
 
 <script>
-
 import state from '../js/state';
 
 export default {
@@ -90,6 +89,7 @@ export default {
             cvc: '',
             exp_month: '',
             exp_year: '',
+            error_message: '',
         };
     },
     methods: {
@@ -103,5 +103,4 @@ export default {
         },
     },
 };
-
 </script>

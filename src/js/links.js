@@ -1,10 +1,9 @@
-import fetch from 'whatwg-fetch';
 import api from './api';
 
 const links = {
     get() {
         const options = {
-            methods: 'GET',
+            method: 'GET',
             headers: api.getHeaders(),
         };
         return fetch(`${api.domain}/links/`, options)
