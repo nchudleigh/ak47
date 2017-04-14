@@ -78,7 +78,6 @@
 </template>
 
 <script>
-
 import state from '../js/state';
 
 export default {
@@ -104,5 +103,4 @@ export default {
         },
     },
 };
-
 </script>

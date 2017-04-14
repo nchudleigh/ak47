@@ -61,7 +61,6 @@ code {
 </template>
 
 <script>
-
 import Vue from 'vue';
 import state from '../js/state';
 import links from '../js/links';

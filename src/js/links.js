@@ -2,9 +2,8 @@ import api from './api';
 
 const links = {
     get() {
-        console.log('in this house');
         const options = {
-            methods: 'GET',
+            method: 'GET',
             headers: api.getHeaders(),
         };
         return fetch(`${api.domain}/links/`, options)

@@ -98,7 +98,6 @@
 </template>
 
 <script>
-
 import user from '../js/user';
 import links from '../js/links';
 
@@ -114,7 +113,8 @@ export default {
     },
     methods: {
         login() {
-            user.get(this.key, this.live_key)
+            user
+                .get(this.key, this.live_key)
                 .then(() => {
                     this.$router.push({ name: 'links' });
                 })
@@ -127,7 +127,8 @@ export default {
                 this.error_message = 'Invalid email address';
                 return;
             }
-            user.create(this.email_addr)
+            user
+                .create(this.email_addr)
                 .then(() => {
                     this.$router.push({ name: 'links' });
                 })
@@ -137,5 +138,4 @@ export default {
         },
     },
 };
-
 </script>

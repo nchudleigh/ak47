@@ -19,5 +19,4 @@ const config = {
     },
 };
 
-new Vue(config)
-    .$mount('#app');
+new Vue(config).$mount('#app');

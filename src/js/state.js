@@ -24,7 +24,7 @@ const state = {
         // try {
         Object.assign(this.data[key], payload);
         // } catch (e) {
-            // console.error(`Could not store ${key}`);
+        // console.error(`Could not store ${key}`);
         // }
     },
     set(key, payload, id = null) {

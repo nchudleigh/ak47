@@ -24,10 +24,9 @@ export default {
     },
     created() {
         state.init();
-        links.get()
-            .then((results) => {
-                state.update('links', results);
-            });
+        links.get().then((results) => {
+            state.update('links', results);
+        });
         this.$router.push({ name: 'links' });
         console.log('refresh');
         // Stripe.setPublishableKey(process.env.STRIPE_KEY)

@@ -14,7 +14,6 @@
 </template>
 
 <script>
-
 import api from '../js/api';
 
 export default {
@@ -37,7 +36,9 @@ export default {
     created() {
         setTimeout(this.resize, 1);
         this.payload = this.obj;
-        this.bus.$on('error', (error) => { this.error_message = error; });
+        this.bus.$on('error', (error) => {
+            this.error_message = error;
+        });
     },
     methods: {
         resize() {
@@ -57,11 +58,12 @@ export default {
         },
         send() {
             this.submit(this.payload)
-                .then(
-                    (resp) => { this.error_message = resp.message; },
-                    (resp) => { this.error_message = resp.message; },
-                )
-                .catch((resp) => { this.error_message = resp.message; });
+                .then((resp) => {
+                    this.error_message = resp.message;
+                })
+                .catch((resp) => {
+                    this.error_message = resp.message;
+                });
         },
         cancel() {
             this.bus.$emit('cancel');
@@ -88,5 +90,4 @@ export default {
         },
     },
 };
-
 </script>

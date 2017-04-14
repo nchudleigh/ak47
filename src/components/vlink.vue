@@ -25,7 +25,6 @@
 </template>
 
 <script>
-
 export default {
     name: 'vlink',
     props: {
@@ -64,7 +63,7 @@ export default {
         },
         onactive(link) {
             this.active_global = true;
-            this.active = (link.id === this.link.id);
+            this.active = link.id === this.link.id;
         },
         cancel() {
             this.active_global = false;
