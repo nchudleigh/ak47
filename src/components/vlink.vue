@@ -5,7 +5,7 @@
                 <div v-if="!active" class="hbggrey p5 br cp" :style="maxwidth">
                     {{link.path}}
                 </div>
-                <input id="input_path" v-if="active" type="text" v-model="link.path">
+                <input id="input_path" v-if="active" type="text" v-model="link.path" placeholder="e.g. /search/:query">
             </div>
         </td>
         <td>
@@ -13,7 +13,7 @@
                 <div v-if="!active" class="hbggrey p5 br cp oh" :style="maxwidth">
                     {{link.dest}}
                 </div>
-                <input id="input_dest"  v-if="active" type="text" v-model="link.dest">
+                <input id="input_dest"  v-if="active" type="text" v-model="link.dest" placeholder="e.g. https://google.com?q=:query">
             </div>
         </td>
         <td>
@@ -50,8 +50,9 @@ export default {
             error = this.link.path.startsWith('/') ? error : 'Path must start with a /';
             error = this.link.path.indexOf(' ') === -1 ? error : 'No spaces allowed in path';
 
-            error = this.link.dest.startsWith('http') ? error : 'Dest must start with http';
-            error = this.link.dest.indexOf(' ') === -1 ? error : 'No spaces allowed in dest';
+            error = this.link.dest.startsWith('http') ? error : 'Must start with http';
+            error = this.link.dest.indexOf(' ') === -1 ? error : 'No spaces allowed';
+
             this.bus.$emit('error', error);
         },
         click(field) {

@@ -8,7 +8,8 @@
     </div>
     <button @click="send">Send</button>
     <span class="text mono grey cp hgrey m1l" @click="cancel">Cancel</span>
-    <div class="text mono m1t">{{error_message}}</div>
+    <div class="text mono m1t green">{{success_message}}</div>
+    <div class="text mono m1t red">{{error_message}}</div>
 </div>
 
 </template>
@@ -29,6 +30,7 @@ export default {
     },
     data() {
         return {
+            success_message: '',
             error_message: '',
             payload: {},
         };
@@ -57,9 +59,11 @@ export default {
             ta.selectionStart = ta.selectionEnd = start + 1;
         },
         send() {
+            this.success_message = '';
+            this.error_message = '';
             this.submit(this.payload)
                 .then((resp) => {
-                    this.error_message = resp.message;
+                    this.success_message = resp.message ? resp.message : 'Success';
                 })
                 .catch((resp) => {
                     this.error_message = resp.message;

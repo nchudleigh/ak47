@@ -13,6 +13,7 @@ export default [
                 next({
                     name: 'links',
                 });
+                links.get();
             } else {
                 next();
             }

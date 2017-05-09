@@ -22,6 +22,10 @@ code {
         <div class="text sans s bold">
             Or even use wildcards: <code>yoursite.com/assets/*</code> -> <code>your.cdn.com/version/*</code>
         </div>
+        <div v-if="links_count" class="text sans s m1t">
+            <hr>
+            Try <strong class="green">creating your first link</strong> by modifying the one below
+        </div>
     </div>
     <div class="row m2t">
         <!-- Table Container -->
@@ -92,7 +96,7 @@ export default {
             // the api call for update
             update: links.update,
             // placeholder link obj for create
-            placeholder: { path: '/path', dest: 'https://destination.com' },
+            placeholder: { path: '/search/:query', dest: 'https://google.com?q=:query' },
         };
     },
     created() {
@@ -131,20 +135,23 @@ export default {
             this.creating = null;
             this.updating = null;
             this.active = false;
-            this.placeholder = { path: '/path', dest: 'https://destination.com' };
+            this.placeholder = { path: '/search/:query', dest: 'https://google.com?q=:query' };
         },
     },
     computed: {
+        links_count() {
+            return Object.keys(this.links).length === 0;
+        },
         table_class() {
             return {
-                six: this.active,
+                seven: this.active,
                 bor: this.active,
                 twelve: !this.active,
             };
         },
         active_class() {
             return {
-                six: this.active,
+                five: this.active,
                 zero: !this.active,
             };
         },
