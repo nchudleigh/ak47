@@ -5,6 +5,7 @@ import routes from './routes';
 
 Vue.use(VueRouter);
 
+
 // TODO: init stripe
 const router = new VueRouter({
     routes,

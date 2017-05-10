@@ -11,9 +11,10 @@ const links = {
             .then(api.checkStatus)
             .then(api.parseJson)
             .then((response) => {
-                console.log(response);
+                console.log('got more links', response);
                 response.forEach((li) => {
-                    state.set('link', li);
+                    state.set('links', li, li.id);
+                    console.log(state.links);
                 });
                 return response;
             });
@@ -28,7 +29,7 @@ const links = {
             .then(api.checkStatus)
             .then(api.parseJson)
             .then((response) => {
-                state.set('link', response);
+                state.set('links', response, response.id);
                 return response;
             });
     },
@@ -42,7 +43,7 @@ const links = {
             .then(api.checkStatus)
             .then(api.parseJson)
             .then((response) => {
-                state.set('link', response);
+                state.set('links', response, response.id);
                 return response;
             });
     },

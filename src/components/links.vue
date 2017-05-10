@@ -22,7 +22,7 @@ code {
         <div class="text sans s bold">
             Or even use wildcards: <code>yoursite.com/assets/*</code> -> <code>your.cdn.com/version/*</code>
         </div>
-        <div v-if="links_count" class="text sans s m1t">
+        <div v-if="links_count === 0" class="text sans s m1t">
             <hr>
             Try <strong class="green">creating your first link</strong> by modifying the one below
         </div>
@@ -47,8 +47,15 @@ code {
 
                 <!-- List -->
                 <tbody>
-                    <vlink :link="placeholder" :bus="bus" :action="'create'"/>
-                    <vlink :link="link" :bus="bus" :user="user" v-for="(link, index) in links"/>
+                    <vlink :link="placeholder"
+                        :bus="bus"
+                        :action="'create'"
+                    />
+                    <vlink v-for="(link, key, index) in links" :key="key"
+                        :link="link"
+                        :bus="bus"
+                        :user="user"
+                    />
                 </tbody>
             </table>
         </div>
@@ -88,9 +95,9 @@ export default {
             // object being updated
             updating: null,
             // the current user
-            user: state.get('user'),
+            user: state.user,
             // the current list of links
-            links: state.get('links'),
+            links: state.links,
             // the api call for create
             create: links.create,
             // the api call for update
@@ -113,7 +120,7 @@ export default {
         },
         onupdate(link) {
             this.active = true;
-            this.updating = this.links.find(l => link.id === l.id);
+            this.updating = this.links[link.id];
             this.creating = null;
         },
         onchange(payload) {
@@ -140,7 +147,7 @@ export default {
     },
     computed: {
         links_count() {
-            return Object.keys(this.links).length === 0;
+            return Object.keys(this.links).length;
         },
         table_class() {
             return {
