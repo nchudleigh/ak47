@@ -11,10 +11,11 @@ const links = {
             .then(api.checkStatus)
             .then(api.parseJson)
             .then((response) => {
+                // TODO: Figure out duplicates issue
                 console.log('got more links', response);
                 response.forEach((li) => {
+                    console.log(li.id);
                     state.set('links', li, li.id);
-                    console.log(state.links);
                 });
                 return response;
             });

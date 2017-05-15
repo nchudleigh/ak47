@@ -2,7 +2,7 @@
     <tr>
         <td>
             <div class="text mono s ib" @click="click('path')">
-                <div v-if="!active" class="hbggrey p5 br cp" :style="maxwidth">
+                <div v-if="!active" class="hbggrey br cp" style="max-width:155.4px;width:155.4px;height:40px;line-height:40px;padding-left:9.6px">
                     {{link.path}}
                 </div>
                 <input id="input_path" v-if="active" type="text" v-model="link.path" placeholder="e.g. /search/:query">
@@ -90,11 +90,6 @@ export default {
         },
     },
     computed: {
-        maxwidth() {
-            return {
-                'max-width': this.active_global ? '165px' : '1000px',
-            };
-        },
         fullpath() {
             return `https://${this.user.key}.glock.link${this.link.path}`;
         },

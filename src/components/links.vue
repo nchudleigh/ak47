@@ -7,9 +7,8 @@ code {
 </style>
 
 <template lang="html">
-
 <div class="m1h">
-    <div class="p1 bo grey">
+    <div class="p1 bo grey" v-if="!onboard.read">
         <div class="text mono grey">
             What are links?
         </div>
@@ -22,10 +21,16 @@ code {
         <div class="text sans s bold">
             Or even use wildcards: <code>yoursite.com/assets/*</code> -> <code>your.cdn.com/version/*</code>
         </div>
-        <div v-if="links_count === 0" class="text sans s m1t">
-            <hr>
-            Try <strong class="green">creating your first link</strong> by modifying the one below
+        <button class="text s cp" @click="complete('read')">Got it</button>
+    </div>
+    <div class="p1 bo grey" v-if="onboard.read && !onboard.created">
+        <div class="text mono grey">
+            Your first link
         </div>
+        <div class="text sans s m1t bold">
+            Try changing something about the link below
+        </div>
+        <button class="text s cp" @click="complete('created')">Okay</button>
     </div>
     <div class="row m2t">
         <!-- Table Container -->
@@ -64,7 +69,7 @@ code {
             <request :obj="updating" :bus="bus" :submit="update" :method="'PATCH'" :url="'/links/'" :fields="['path', 'dest']"></request>
         </div>
         <div v-if="creating" class="columns" :class="active_class">
-            <request :obj="creating" :bus="bus" :submit="create" :method="'POST'" :url="'/links/'"></request>
+            <request :obj="creating" :bus="bus" :submit="create" :method="'POST'" :url="'/links/'"  :fields="['path', 'dest']"></request>
         </div>
     </div>
 </div>
@@ -96,6 +101,8 @@ export default {
             updating: null,
             // the current user
             user: state.user,
+            // the current onboarding state
+            onboard: state.onboard.links,
             // the current list of links
             links: state.links,
             // the api call for create
@@ -113,6 +120,10 @@ export default {
         this.bus.$on('cancel', this.oncancel);
     },
     methods: {
+        complete(key) {
+            state.onboard.links[key] = true;
+            state.set('onboard', state.onboard);
+        },
         oncreate(link) {
             this.creating = link;
             this.updating = null;
@@ -135,8 +146,6 @@ export default {
             } catch (e) {
                 this.bus.$emit('error', 'Invalid JSON');
             }
-            console.log(typeof payload);
-            console.log(payload);
         },
         oncancel() {
             this.creating = null;

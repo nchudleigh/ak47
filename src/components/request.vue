@@ -1,4 +1,4 @@
-<template lang="html">
+    <template lang="html">
 
 <div class="">
     <span class="text bold mono s">{{method}}</span>
@@ -37,7 +37,7 @@ export default {
     },
     created() {
         setTimeout(this.resize, 1);
-        this.payload = this.obj;
+        this.clean();
         this.bus.$on('error', (error) => {
             this.error_message = error;
         });
@@ -61,8 +61,9 @@ export default {
         send() {
             this.success_message = '';
             this.error_message = '';
-            this.submit(this.payload)
+            this.submit(this.obj)
                 .then((resp) => {
+                    this.clean();
                     this.success_message = resp.message ? resp.message : 'Success';
                 })
                 .catch((resp) => {
@@ -71,6 +72,14 @@ export default {
         },
         cancel() {
             this.bus.$emit('cancel');
+        },
+        clean() {
+            this.payload = {};
+            for (const key of this.fields) {
+                if (this.obj[key]) {
+                    this.payload[key] = this.obj[key];
+                }
+            }
         },
     },
     watch: {
@@ -82,7 +91,7 @@ export default {
         },
         obj: {
             handler() {
-                this.payload = this.obj;
+                this.clean();
             },
             deep: true,
         },
@@ -90,6 +99,7 @@ export default {
     computed: {
         endpoint() {
             const id = this.obj.id ? this.obj.id : '';
+            console.log(id, this.obj.id);
             return `${api.domain}${this.url}${id}`;
         },
     },

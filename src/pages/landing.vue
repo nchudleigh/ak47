@@ -3,50 +3,52 @@
 <!-- Landing Page -->
 <div class="container">
     <div class="m2h">
-        <div class="text serif l" title="glock.link">
-            Gl
-        </div>
-        <div class="text lightgrey mono s">
+        <span class="text mono l bgyellow" style="padding:.4rem">
             glock.link
-        </div>
+        </span>
     </div>
     <div class="m2h">
         <div class="text mono grey">
             What does it do?
         </div>
-        <div class="text sans bold">
-            Redirects, rewrites and tracks link clicks
+        <div class="text mono bold">
+            Redirects and tracks link clicks.
+            <div>
+                <a href="http://kd93ksl921.glock.link/search/puppers">kd93ksl921.glock.link/search/puppers</a>
+                ->
+                <a href="https://google.com/search?q=puppers">google.com/search?q=puppers</a>
+            </div>
         </div>
     </div>
-    <div class="m2h">
+    <!-- <div class="m2h">
         <div class="text mono grey">
             What can I do with it?
         </div>
-        <div class="text sans bold">
+        <div class="text mono bold">
             A lot! Here are some common uses:
         </div>
-        <div class="text sans bold m1l">
+        <div class="text mono bold m1l">
             <a href="#link-shortening">
-                Link Shortening
+                link shortening
             </a>
         </div>
-        <div class="text sans bold m1l">
+        <div class="text mono bold m1l">
             <a href="#custom-domain">
-                Own and Track your Affiliate Links
+                affiliate links
             </a>
         </div>
-        <div class="text sans bold m1l">
-            <a href="#static-files" class="text sans">
-                Versioning and Rollback for Static Files
+        <div class="text mono bold m1l">
+            <a href="#static-files">
+                web apps
             </a>
         </div>
-    </div>
+    </div> -->
 
     <div class="m2h">
         <div class="text mono grey">
             How do I use it?
         </div>
-        <div class="text sans bold">
+        <div class="text mono bold">
             This web application, or the API
         </div>
     </div>
@@ -55,8 +57,8 @@
         <div class="text mono grey">
             How much does it cost?
         </div>
-        <div class="text sans bold">
-            $20 USD/month for absolutely unlimited usage
+        <div class="text mono bold">
+            Not sure yet, for now just use it.
         </div>
     </div>
 
@@ -64,14 +66,14 @@
         <div class="text mono">
             How do I get started?
         </div>
-        <div class="text sans bold">
+        <div class="text mono bold">
             Just put in your email!
         </div>
     </div>
 
     <div id="email_input" class="m1h">
         <div v-if="!show_login" class="">
-            <input type="text" placeholder="your@email.com" v-model="email_addr" v-bind:class="{red:error_message}">
+            <input type="text" placeholder="your@email.com" v-model="email_addr" v-bind:class="{red:error_message}" v-on:keyup.enter="submit">
             <button @click="create">Ok</button>
             <div class="">
                 <a class="text s1 mono cp blue ns" @click="show_login=true">

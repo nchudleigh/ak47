@@ -84,7 +84,7 @@ export default {
     name: 'users',
     data() {
         return {
-            user: state.get('user'),
+            user: state.user,
             number: '',
             cvc: '',
             exp_month: '',

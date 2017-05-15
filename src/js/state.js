@@ -10,6 +10,12 @@ const state = new Vue({
             live_key: '',
         },
         links: {},
+        onboard: {
+            links: {
+                created: false,
+                read: false,
+            },
+        },
     },
     methods: {
         init() {
@@ -17,16 +23,16 @@ const state = new Vue({
             if (user) {
                 this.user = user;
             }
+            const onboard = store.get('onboard');
+            if (onboard) {
+                this.onboard = onboard;
+            }
         },
         get(key, id = null) {
             if (id && typeof this[key] === 'object') return this.data[key][id];
             return this[key];
         },
-        update(key, payload) {
-            Object.assign(this[key], payload);
-        },
         set(key, payload, id = null) {
-            console.log(id && typeof this[key] === 'object');
             try {
                 if (id && typeof this[key] === 'object') Vue.set(this[key], id, payload);
                 else this[key] = payload;

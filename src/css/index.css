@@ -60,6 +60,10 @@
     font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.text.normal {
+    font-weight: normal;
+}
+
 .text.bold {
     font-weight: bold;
 }
@@ -169,6 +173,15 @@ label {
     color: #B4B4B4;
 }
 
+.yellow {
+    color: #fff666;
+}
+
+.bgyellow {
+    background-color: #fff666;
+}
+
+
 .hgrey:hover {
     color: #2c2c2c;
 }
@@ -180,6 +193,7 @@ label {
 .hbggrey:hover {
     background-color: #eee;
 }
+
 
 
 /* Spacing
