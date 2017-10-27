@@ -79,10 +79,11 @@ var webpackConfig = merge(baseWebpackConfig, {
       name: 'manifest',
       chunks: ['vendor']
     }),
-    new CopyWebpackPlugin([{
-        from: 'avantlink_confirmation.txt',
-        to: 'avantlink_confirmation.txt',
-    }])
+    // TODO: always serve index
+    // new CopyWebpackPlugin([{
+    //     from: '_redirect',
+    //     to: '_redirect',
+    // }])
   ]
 })
 

@@ -13,8 +13,7 @@
 <script>
 import landing from './pages/landing';
 import dashboard from './pages/dashboard';
-import state from './js/state';
-import links from './js/links';
+import links from './links';
 
 export default {
     name: 'app',
@@ -23,12 +22,12 @@ export default {
         dashboard,
     },
     created() {
-        state.init();
-        links.get().then((results) => {
-            state.update('links', results);
+        links.get().then((r) => {
+            r.data.forEach((l) => {
+                this.$store.commit('add_link', l);
+            });
         });
         this.$router.push({ name: 'links' });
-        console.log('refresh');
         // Stripe.setPublishableKey(process.env.STRIPE_KEY)
     },
 };

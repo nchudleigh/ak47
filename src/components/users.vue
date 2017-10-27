@@ -78,13 +78,18 @@
 </template>
 
 <script>
-import state from '../js/state';
+
+import { mapState } from 'vuex';
 
 export default {
     name: 'users',
+    computed: {
+        ...mapState([
+            'user',
+        ]),
+    },
     data() {
         return {
-            user: state.get('user'),
             number: '',
             cvc: '',
             exp_month: '',

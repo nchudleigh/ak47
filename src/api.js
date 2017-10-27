@@ -1,4 +1,4 @@
-import state from './state';
+import store from 'store';
 
 const api = {
     domain: process.env.API_DOMAIN,
@@ -9,7 +9,7 @@ const api = {
         let key = '';
         let live_key = '';
         if (!okey || !olive_key) {
-            const user = state.get('user');
+            const user = store.state.user;
             key = user.key;
             live_key = user.live_key;
         }

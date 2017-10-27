@@ -62,8 +62,8 @@ code {
 
 <script>
 import Vue from 'vue';
-import state from '../js/state';
-import links from '../js/links';
+import { mapState } from 'vuex';
+import links from '../links';
 import request from './request';
 import vlink from './vlink';
 
@@ -72,6 +72,25 @@ export default {
     components: {
         request,
         vlink,
+    },
+    computed: {
+        ...mapState([
+            'user',
+            'links',
+        ]),
+        table_class() {
+            return {
+                six: this.active,
+                bor: this.active,
+                twelve: !this.active,
+            };
+        },
+        active_class() {
+            return {
+                six: this.active,
+                zero: !this.active,
+            };
+        },
     },
     data() {
         return {
@@ -83,10 +102,6 @@ export default {
             creating: null,
             // object being updated
             updating: null,
-            // the current user
-            user: state.get('user'),
-            // the current list of links
-            links: state.get('links'),
             // the api call for create
             create: links.create,
             // the api call for update
@@ -132,21 +147,6 @@ export default {
             this.updating = null;
             this.active = false;
             this.placeholder = { path: '/path', dest: 'https://destination.com' };
-        },
-    },
-    computed: {
-        table_class() {
-            return {
-                six: this.active,
-                bor: this.active,
-                twelve: !this.active,
-            };
-        },
-        active_class() {
-            return {
-                six: this.active,
-                zero: !this.active,
-            };
         },
     },
 };

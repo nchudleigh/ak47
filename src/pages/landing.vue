@@ -98,8 +98,8 @@
 </template>
 
 <script>
-import user from '../js/user';
-import links from '../js/links';
+import user from '../user';
+import links from '../links';
 
 export default {
     name: 'landing',

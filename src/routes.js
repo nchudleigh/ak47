@@ -2,14 +2,16 @@ import landing from './pages/landing';
 import dashboard from './pages/dashboard';
 import links from './components/links';
 import users from './components/users';
-import state from './js/state';
+import store from './store';
+
+console.log(store);
 
 export default [
     {
         path: '/',
         component: landing,
         beforeEnter: (to, from, next) => {
-            if (state.get('user').id) {
+            if (store.state.user.id) {
                 next({
                     name: 'links',
                 });
@@ -22,7 +24,7 @@ export default [
         path: '/links',
         component: dashboard,
         beforeEnter: (to, from, next) => {
-            if (!state.get('user').id) {
+            if (!store.state.user.id) {
                 next({
                     path: '/',
                 });

@@ -1,5 +1,5 @@
 import api from './api';
-import state from './state';
+import store from './store';
 
 const user = {
     create(email) {
@@ -14,7 +14,7 @@ const user = {
             .then(api.checkStatus)
             .then(api.parseJson)
             .then((response) => {
-                state.set('user', response);
+                store.commit('set_user', response);
             });
     },
     get(key, live_key) {
@@ -26,7 +26,7 @@ const user = {
             .then(api.checkStatus)
             .then(api.parseJson)
             .then((response) => {
-                state.set('user', response);
+                store.commit('set_user', response);
             });
     },
 };

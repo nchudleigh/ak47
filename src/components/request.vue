@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import api from '../js/api';
+import api from '../api';
 
 export default {
     name: 'request',
